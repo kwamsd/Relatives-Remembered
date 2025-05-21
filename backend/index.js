@@ -1,28 +1,19 @@
-require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const app = express();
+require('dotenv').config();
 
+const PORT = process.env.PORT || 5000;
+
+// Middlewares
 app.use(cors());
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('API Relatives-Remembers en ligne !');
-});
+// // Routes
+// const deceasedRoutes = require('./routes/deceased');
+// app.use('/api/deceased', deceasedRoutes);
 
-const PORT = process.env.PORT || 4000;
+// Lancement du serveur
 app.listen(PORT, () => {
-  console.log(`Serveur backend sur http://localhost:${PORT}`);
-});
-
-const { Pool } = require('pg');
-const pool = new Pool();
-
-app.get('/api/test-db', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT NOW()');
-    res.json(result.rows[0]);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+  console.log(`Server running on port ${PORT}`);
 });
