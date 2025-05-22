@@ -42,12 +42,39 @@
   border: none;
   color: white;
   padding: 0.5rem 1.2rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
   cursor: pointer;
   border-radius: 6px;
-  transition: background 0.3s;
+  transition: 0.3s;
 }
 .nav-btn:hover {
-  background: rgba(255,255,255,0.25);
-  transition: background 0.5s;
+  color: #e2f510;
+}
+
+.user-btn {
+  background: #fff;
+  border: 2px solid #798F8F;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1rem;
+  padding: 0;
+  transition: background 0.2s, border-color 0.2s;
+  box-shadow: 0 2px 8px rgba(120,143,143,0.10);
+  cursor: pointer;
+}
+
+.user-btn:hover,
+.user-btn:focus {
+  background: #798F8F22;
+  border-color: #222;
+}
+
+.user-icon {
+  display: block;
+  width: 24px;
+  height: 24px;
 }

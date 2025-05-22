@@ -16,8 +16,8 @@
 
 <script setup>
 import Card from '../components/Card.vue'
-import '../assets/Card.css'
-import '../assets/List.css'
+import '../assets/css/Card.css'
+import '../assets/css/List.css'
 
 const deceasedList = [
   {

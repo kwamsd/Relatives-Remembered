@@ -1,12 +1,12 @@
 .card {
   width: 98%;
   min-width: 320px;
-  margin: 1.5rem auto;
+  margin-top: 0.5rem;
   height: 100px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  background: rgba(255,255,255,0.92);
+  background: linear-gradient(90deg, white 0%, #E1E1C5 100%);
   border: 2px solid #798F8F;
   border-radius: 18px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.07);

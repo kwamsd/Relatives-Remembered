@@ -8,7 +8,7 @@
 }
 
 .banner-container {
-  background-image: url('people.png');
+  background-image: url('../images/people.png');
   background-size: cover;
   background-position: center;
   border: 3px solid #ffe066;              /* bordure jaune délavé */
@@ -28,4 +28,5 @@
   margin: 0;
   font-size: 3rem;
   color: white;
+  font-family: 'Pacifico', cursive;
 }

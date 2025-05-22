@@ -7,5 +7,5 @@
 </template>
 
 <script setup>
-import '../assets/Footer.css'
+import '../assets/css/Footer.css'
 </script>

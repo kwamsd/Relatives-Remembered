@@ -1,0 +1,97 @@
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(120deg, #798F8F 0%, #f4f6f7 100%);
+}
+
+.login-form {
+  background: rgba(255,255,255,0.97);
+  border: 2px solid #798F8F;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(120,143,143,0.12);
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.login-form h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #222;
+  letter-spacing: 0.02em;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #798F8F;
+}
+
+.form-group input {
+  padding: 0.7rem;
+  border-radius: 8px;
+  border: 1.5px solid #798F8F;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.form-group input:focus {
+  border-color: #222;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.login-btn {
+  background: #798F8F;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.login-btn:hover {
+  background: #5a6c6c;
+}
+
+.form-error {
+  color: #c0392b;
+  text-align: center;
+  margin-top: -1rem;
+  font-size: 1rem;
+}
+
+.signup-link {
+  margin-top: 1.2rem;
+  text-align: center;
+  font-size: 1rem;
+  color: black;
+}
+.signup-link a,
+.signup-link .router-link {
+  color: #798F8F;
+  font-weight: 600;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+.signup-link a:hover,
+.signup-link .router-link:hover {
+  color: #222;
+}
