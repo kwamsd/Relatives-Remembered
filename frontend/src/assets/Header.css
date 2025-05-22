@@ -1,0 +1,53 @@
+.app-header {
+  width: 100%;
+  background: linear-gradient(0deg, #798F8F 0%, #E1E1C5 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(100, 108, 255, 0.1);
+  padding: 0;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0.5rem 2rem;
+  gap: 2rem;
+}
+
+.navbar {
+  display: flex;
+  gap: 5rem;
+}
+
+.navbar.left {
+  justify-content: flex-end;
+  flex: 1;
+}
+
+.navbar.right {
+  justify-content: flex-start;
+  flex: 1;
+}
+
+.site-logo {
+  height: 56px;
+  display: block;
+  margin: 0 5rem;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  color: white;
+  padding: 0.5rem 1.2rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+.nav-btn:hover {
+  background: rgba(255,255,255,0.25);
+  transition: background 0.5s;
+}

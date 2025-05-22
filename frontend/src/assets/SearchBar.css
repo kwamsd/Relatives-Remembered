@@ -1,0 +1,63 @@
+/* Conteneur global aligné à droite */
+.search-bar-container {
+  position: absolute;
+  top: 6.5rem;
+  right: 2rem;
+  width: 35rem;
+  background: rgba(120, 143, 143, 0.10); /* transparent grisé */
+  border: 3px solid #798F8F;                /* bordure noire */
+  border-radius: 20px;
+  padding: 2rem 2rem 1.5rem 2rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Label au-dessus, aligné à gauche */
+.search-bar-label {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+  color: #798F8F;
+}
+
+/* Ligne champs + icône */
+.search-bar-fields {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+/* Champs de texte */
+.search-input {
+  background: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.1rem;
+  width: 120px;                /* Largeur fixe, ajuste selon ton goût */
+  min-width: 0;
+  outline: none;
+  transition: box-shadow 0.2s;
+  box-shadow: 0 1px 4px rgba(120,143,143,0.08); /* Optionnel, petit relief */
+  color: #111;
+}
+
+/* Icône loupe à droite */
+.search-bar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s;
+  padding: 0.5rem;
+}
+
+.search-bar-icon:hover {
+  background: #798F8F22; /* Fond gris très léger au hover */
+}
