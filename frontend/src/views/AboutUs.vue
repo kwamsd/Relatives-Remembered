@@ -41,5 +41,5 @@
 <script setup>
 // Mets ici le chemin de ton image si tu en as une
 const imageSrc = ''
-import '../assets/css/AboutUs.css'
+import '../assets/css/about_us/AboutUs.css'
 </script>

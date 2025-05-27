@@ -8,10 +8,10 @@
 }
 
 .banner-container {
-  background-image: url('../images/people.png');
+  background-image: url('../../images/people.png');
   background-size: cover;
   background-position: center;
-  border: 3px solid #ffe066;              /* bordure jaune délavé */
+  border: 3px solid #E1E1C5;              /* bordure jaune délavé */
   border-radius: 24px;                    /* coins arrondis */
   padding: 2rem 3rem;
   width: 40rem;

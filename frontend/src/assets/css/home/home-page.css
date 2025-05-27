@@ -1,10 +1,67 @@
+.honor-section {
+    display: flex;
+    justify-content: space-around;
+    padding: 40px 10px;
+    background: #eaeae8 url('../../images/background.png');
+}
+.honor-box,
+.search-box {
+    background: #789095;
+    color: white;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-style: italic;
+}
+
+.honor-box span {
+    font-size: 20px;
+}
+
+.honor-box button {
+    margin-top: 15px;
+    background-color: #e1e4d6;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+}
+
+.search-box {
+    width: 400px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: 3px solid #789095;
+    color: #789095;
+    display: flex;
+    flex-direction: row;
+}
+
+.search-box input {
+    width: 40%;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.search-box button {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+}
+
 .gallery {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
     padding: 30px 10px;
-    background: #f9f9f7 url('https://www.transparenttextures.com/patterns/birdy.png');
+    background: #f9f9f7;
 }
 
 .gallery-card {
@@ -35,7 +92,8 @@
 
 .gallery-nav {
     text-align: center;
-    margin: 20px 0;
+    padding: 20px 0;
+    background-color: #f9f9f7;
 }
 
 .gallery-nav button {

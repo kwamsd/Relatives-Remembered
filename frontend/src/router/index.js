@@ -3,12 +3,16 @@ import Home from '../views/Home.vue'
 import AboutUs from '../views/AboutUs.vue'
 import List from '../views/List.vue'
 import Login from '../views/Login.vue'
+import Dead from '../views/Dead-People.vue'
+import Survey from '../views/Survey.vue'
 
 const routes = [
   { path: '/', component: Home },
   { path: '/about', component: AboutUs },
   { path: '/list', component: List },
-  { path: '/login', component: Login}
+  { path: '/login', component: Login},
+  { path: '/dead-people', component: Dead},
+  { path: '/survey', component: Survey}
 ]
 
 const router = createRouter({

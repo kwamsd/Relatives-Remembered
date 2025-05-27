@@ -7,44 +7,30 @@
         </p>
       </div>
     </section>
-    <div class="home-row">
-    <button class="special-btn">
-      <span class="special-btn-label">
-        HONOUR THE MEMORY OF A LOVED ONE
-      </span>
-      <span class="special-btn-plus">
-        <span class="plus-icon">+</span>
-      </span>
-    </button>
-    <div class="search-bar-container">
-      <div class="search-bar-label">Remember Special</div>
-      <div class="search-bar-fields">
-        <input type="text" class="search-input" placeholder="First Name" />
-        <input type="text" class="search-input" placeholder="Last Name" />
-        <button class="search-bar-icon" aria-label="Search">
-        <span class="search-bar-icon">
-          <!-- Icône loupe SVG, simple et sans dépendance -->
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-            <circle cx="11" cy="11" r="7" stroke="#222" stroke-width="2"/>
-            <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="#222" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </span>
-        </button>
-      </div>
-    </div>
-    </div>
   </div>
+  <section class="honor-section">
+        <div class="honor-box">
+            <span>HONOR THE MEMORY OF A LOVED ONE</span>
+            <button><a href="/survey">+</a></button>
+        </div>
+        <div class="search-box">
+            <p>REMEMBER SOMEONE SPECIAL</p>
+            <input type="text" placeholder="First Name">
+            <input type="text" placeholder="Last Name">
+            <button>🔍</button>
+        </div>
+    </section>
   <section class="gallery">
     <div class="gallery-card">
-      <img src="./image/photo-pp.jpg" alt="">
+      <img src="../assets/images/photo-pp.jpg" alt="">
       <p>NOM Prénom</p>
     </div>
     <div class="gallery-card">
-      <img src="./image/photo-pp.jpg" alt="">
+      <img src="../assets/images/photo-pp.jpg" alt="">
       <p>NOM PRENOM</p>
     </div>
     <div class="gallery-card">
-      <img src="./image/photo-pp.jpg" alt="">
+      <img src="../assets/images/photo-pp.jpg" alt="">
       <p>NOM PRENOM</p>
     </div>
   </section>
@@ -54,7 +40,9 @@
   </div>
   <section class="extra-section">
     <h2>About Relatives Remembered</h2>
-    <p>We created this space to celebrate the lives and memories of those we’ve loved and lost. Whether you want to share stories, light a virtual candle, or simply browse the legacy left by others, we welcome you to connect and remember together.</p>
+    <p>We created this space to celebrate the lives and memories of those we’ve loved and lost. Whether you want to
+      share stories, light a virtual candle, or simply browse the legacy left by others, we welcome you to connect and
+      remember together.</p>
   </section>
   <section class="features-section">
     <h2>What You Can Do</h2>
@@ -72,13 +60,12 @@
   <section class="cta-section">
     <h2>Ready to Share a Memory?</h2>
     <p>Create a tribute and keep the memory of your loved ones alive.</p>
-    <button><a href="./html/form.html">Start Now</a></button>
+    <button><a href="/survey">Start Now</a></button>
   </section>
 </template>
 
 <script setup>
-import '../assets/css/Banner.css'
-import '../assets/css/SpecialButton.css'
-import '../assets/css/SearchBar.css'
-import '../assets/css/home-page.css'
+import '../assets/css/home/Banner.css'
+import '../assets/css/home/SearchBar.css'
+import '../assets/css/home/home-page.css'
 </script>
