@@ -24,6 +24,6 @@
 
 <script setup>
 import logo from '../assets/images/logo.png'
-import '../assets/css/Header.css'
+import '../assets/css/components/Header.css'
 import { RouterLink } from 'vue-router'
 </script>

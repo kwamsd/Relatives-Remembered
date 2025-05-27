@@ -4,6 +4,8 @@ import AboutUs from '../views/AboutUs.vue'
 import List from '../views/List.vue'
 import Login from '../views/Login.vue'
 import Signup from '../views/Signup.vue'
+import Dead from '../views/Dead-People.vue'
+import Survey from '../views/Survey.vue'
 
 const routes = [
   { path: '/', component: Home },
@@ -11,6 +13,8 @@ const routes = [
   { path: '/list', component: List },
   { path: '/login', component: Login},
   { path: '/signup', component: Signup}
+  { path: '/dead-people', component: Dead},
+  { path: '/survey', component: Survey}
 ]
 
 const router = createRouter({

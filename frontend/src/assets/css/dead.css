@@ -1,0 +1,79 @@
+.dead-main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 60px 20px;
+    background: url('../images/paysage.png') no-repeat center center/cover;
+    color: white;
+}
+
+.left-section,
+.right-section {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    margin: 20px;
+}
+
+.photo-frame {
+    text-align: center;
+}
+
+.photo-frame img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+}
+
+.identity-card {
+    background-color: #0f3b4b71;
+    border: 3px solid #0f3b4b;
+    padding: 20px;
+    text-align: center;
+    margin-top: -10px;
+}
+
+.identity-card h2 {
+    margin: 10px 0 0;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.identity-card p {
+    margin: 5px 0;
+    font-style: italic;
+}
+
+.details-box {
+    background-color: rgba(0, 0, 0, 0.28);
+    padding: 20px;
+    margin-top: 30px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.description-box {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+.anecdotes-box {
+    background-color: #0f3b4b;
+    padding: 20px;
+    /* border-radius: 10px; */
+    max-height: 400px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+}
+
+.anecdotes-box::-webkit-scrollbar {
+    width: 6px;
+}
+
+.anecdotes-box::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}

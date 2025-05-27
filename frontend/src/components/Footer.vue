@@ -1,11 +1,9 @@
 <template>
-  <footer class="app-footer">
-    <div class="footer-content">
-      © 2025 Relatives Remembered &mdash; All rights reserved.
-    </div>
+  <footer>
+    &copy; 2025 Relatives Remembered. All rights reserved. | Contact | Privacy Policy | Terms
   </footer>
 </template>
 
 <script setup>
-import '../assets/css/Footer.css'
+import '../assets/css/components/Footer.css'
 </script>
