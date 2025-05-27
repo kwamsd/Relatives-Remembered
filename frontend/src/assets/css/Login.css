@@ -1,9 +1,8 @@
 .login-page {
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(120deg, #798F8F 0%, #f4f6f7 100%);
 }
 
 .login-form {
@@ -68,7 +67,7 @@
 }
 
 .login-btn:hover {
-  background: #5a6c6c;
+  background: #E1E1C5;
 }
 
 .form-error {
