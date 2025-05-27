@@ -49,14 +49,6 @@ main {
       color: #333;
       text-align: justify;
     }
-    footer {
-      background-color: #789095;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-      margin-top: 60px;
-    }
     @media (max-width: 768px) {
       .bio-container {
         flex-direction: column;

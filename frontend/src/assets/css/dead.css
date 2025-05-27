@@ -2,8 +2,10 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 60px 20px;
+    /* padding: 60px 20px; */
     background: url('../images/paysage.png') no-repeat center center/cover;
+    width: 100%;
+    height: 100%;
     color: white;
 }
 

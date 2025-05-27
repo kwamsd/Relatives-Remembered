@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <main class="main-form">
     <h1>Créer une page en mémoire</h1>
     <form action="upload.php" method="post" enctype="multipart/form-data">
       <div>
@@ -34,7 +34,7 @@
           <option value="sobre">Sobre</option>
         </select>
       </div>
-      <button> <a href="./dead_one.html">Créer la page hommage</a></button>
+      <button> <a href="/dead-people">Créer la page hommage</a></button>
     </form>
   </main>
 </template>
