@@ -48,4 +48,4 @@ export default {
 };
 </script>
 
-<style scoped src="../assets/css/donate/donation.css"></style>
+<style scoped src="../assets/css/donation.css"></style>
