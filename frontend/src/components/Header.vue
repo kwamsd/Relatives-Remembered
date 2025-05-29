@@ -12,7 +12,7 @@
 
       <nav class="navbar right">
         <router-link to="/list" class="nav-btn">LIST</router-link>
-        <router-link to="#" class="nav-btn">DONATION</router-link>
+        <router-link to="/donation" class="nav-btn">DONATION</router-link>
 
         <div class="user-area">
           <!-- Si connecté : point vert + bouton déconnexion -->
