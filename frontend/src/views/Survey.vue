@@ -1,7 +1,7 @@
 <template>
     <main class="main-form">
     <h1>Créer une page en mémoire</h1>
-    <form action="upload.php" method="post" enctype="multipart/form-data">
+    <form class="form-page" action="upload.php" method="post" enctype="multipart/form-data">
       <div>
         <label for="prenom">Prénom</label>
         <input type="text" id="prenom" name="prenom" required>

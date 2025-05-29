@@ -3,7 +3,7 @@
     <section class="banner">
       <div class="banner-container">
         <p>
-          Lorem ipsum dolor sit amet
+          Because every life deserves to be rembembered
         </p>
       </div>
     </section>

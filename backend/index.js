@@ -1,17 +1,27 @@
+// backend/index.js
 const express = require('express');
 const cors = require('cors');
-const app = express();
+const cookieParser = require('cookie-parser');        // ← import
 require('dotenv').config();
 
-const PORT = process.env.PORT || 5000;
+const app = express();
+const PORT = process.env.PORT || 3000;
 
 // Middlewares
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173',  // ton front Vite
+  credentials: true                 // autorise l'envoi des cookies
+}));
 app.use(express.json());
+app.use(cookieParser());            // ← ajoute cookie-parser
 
-// // Routes
-// const deceasedRoutes = require('./routes/deceased');
-// app.use('/api/deceased', deceasedRoutes);
+// Routes
+const authRoutes = require('./routes/auth.js');
+app.use('/auth', authRoutes);
+
+app.get('/ping', (req, res) => {
+  res.send('pong');
+});
 
 // Lancement du serveur
 app.listen(PORT, () => {
