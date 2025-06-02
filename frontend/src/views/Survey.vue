@@ -34,7 +34,7 @@
           <option value="sobre">Sobre</option>
         </select>
       </div>
-      <button> <a href="/dead-people">Créer la page hommage</a></button>
+      <router-link to="/template" class="nav-btn">Créer la page hommage</router-link>
     </form>
   </main>
 </template>

@@ -1,3 +1,4 @@
+// frontend/src/services/authService.js
 import { reactive } from 'vue'
 
 const state = reactive({

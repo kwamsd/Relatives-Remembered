@@ -1,174 +1,209 @@
+/* ================================
+   KEEP the existing rules first.
+   (Copied from your original file.)
+   ================================ */
+
 .honor-section {
-    display: flex;
-    justify-content: space-around;
-    padding: 40px 10px;
-    background: #eaeae8 url('../../images/background.png');
+  display: flex;
+  justify-content: space-around;
+  padding: 40px 10px;
+  background: #eaeae8 url('../../images/background.png');
 }
 .honor-box,
 .search-box {
-    background: #789095;
-    color: white;
-    border-radius: 10px;
-    padding: 30px;
-    text-align: center;
-    width: 200px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-style: italic;
+  background: #789095;
+  color: white;
+  border-radius: 10px;
+  padding: 30px;
+  text-align: center;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-style: italic;
 }
 
 .honor-box span {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .honor-box button {
-    margin-top: 15px;
-    background-color: #e1e4d6;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
+  margin-top: 15px;
+  background-color: #e1e4d6;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
 }
 
 .search-box {
-    width: 400px;
-    background-color: rgba(217, 217, 217, 0.43);
-    border: 3px solid #789095;
-    color: #789095;
-    display: flex;
-    flex-direction: row;
+  width: 400px;
+  background-color: rgba(217, 217, 217, 0.43);
+  border: 3px solid #789095;
+  color: #789095;
+  display: flex;
+  flex-direction: row;
 }
 
 .search-box input {
-    width: 40%;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+  width: 40%;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
 .search-box button {
-    background-color: transparent;
-    border: none;
-    font-size: 20px;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
 }
 
-.gallery {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    padding: 30px 10px;
-    background: #f9f9f7;
-}
-
-.gallery-card {
-    width: 200px;
-    text-align: center;
-    font-family: 'Pacifico', cursive;
-    padding: 10px;
-}
-
-.gallery-card img {
-    width: 100%;
-    border-radius: 5px;
-}
-
-.gallery-card:nth-child(1) {
-    background: #789095;
-    color: white;
-}
-
-.gallery-card:nth-child(2) {
-    background: #e8e6bc;
-}
-
-.gallery-card:nth-child(3) {
-    background: #bfcbd0;
-    opacity: 0.7;
-}
-
-.gallery-nav {
-    text-align: center;
-    padding: 20px 0;
-    background-color: #f9f9f7;
-}
-
-.gallery-nav button {
-    background: rgba(247, 169, 92, 0.739);
-    border: none;
-    font-size: 24px;
-    margin: 0 10px;
-}
 
 .extra-section,
 .features-section,
 .testimonial-section,
 .cta-section {
-    padding: 40px 20px;
-    text-align: center;
+  padding: 40px 20px;
+  text-align: center;
 }
 
 .testimonial-section,
-.extra-section{
-    background-color: #f3f3f0;
+.extra-section {
+  background-color: #f3f3f0;
 }
 .cta-section,
-.features-section{
-    background: #f9f9f7c3 url('../images/background.png');
+.features-section {
+  background: #f9f9f7c3 url('../images/background.png');
 }
 
 .extra-section h2,
 .features-section h2,
 .testimonial-section h2,
 .cta-section h2 {
-    font-family: 'Pacifico', cursive;
-    color: #789095;
+  font-family: 'Pacifico', cursive;
+  color: #789095;
 }
 
 .extra-section p,
 .features-section p,
 .testimonial-section p,
 .cta-section p {
-    max-width: 700px;
-    margin: 0 auto 20px;
-    color: black;
+  max-width: 700px;
+  margin: 0 auto 20px;
+  color: black;
 }
 
 .features-list {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 30px;
 }
 
 .feature {
-    background: #e8e6bc;
-    padding: 20px;
-    border-radius: 10px;
-    width: 250px;
-    color: black;
+  background: #e8e6bc;
+  padding: 20px;
+  border-radius: 10px;
+  width: 250px;
+  color: black;
 }
 
 .testimonial {
-    background: #fff;
-    border-left: 5px solid #789095;
-    padding: 20px;
-    margin: 20px auto;
-    width: 60%;
-    font-style: italic;
-    color: black;
+  background: #fff;
+  border-left: 5px solid #789095;
+  padding: 20px;
+  margin: 20px auto;
+  width: 60%;
+  font-style: italic;
+  color: black;
 }
 
 .cta-section button {
-    background: #789095;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
+  background: #789095;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
 }
+
+/* ==============================================
+   NEW / UPDATED RULES START HERE
+   ============================================== */
+
+/* 1. Free‐creation notice styling */
+.free-notice {
+  background-color: #e8e6bc;
+  padding: 5px;
+  text-align: center;
+  font-family: 'Pacifico', cursive;
+  color: #789095;
+  font-size: 1.5rem;
+}
+
+/* === GALERIE (version simplifiée) === */
+
+/* Fenêtre masquant tout sauf un seul card à la fois */
+.gallery-wrapper {
+  /* margin: 0 auto 40px; */
+  /*width: 220px;     200px (card) + 20px (écart) */
+  overflow: hidden;
+  background: #798f8f;
+  padding: 20px;
+  border-top: 1px solid #E1E1C5 ;
+}
+
+/* Piste (track) déroulante */
+.gallery-track {
+  display: flex;
+  gap: 20px;               /* même espace qu’en JS (CARD_WIDTH = 220 : 200+20) */
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Style de base pour chaque carte (inactive) */
+.gallery-card {
+  flex: 0 0 200px;         /* largeur fixe de 200px */
+  text-align: center;
+  font-family: 'Pacifico', cursive;
+  padding: 10px;
+  background: #b7b79f ;
+  opacity: 0.5;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Image à l’intérieur de la card */
+.gallery-card img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+/* Carte active (fond différent + pleine opacité) */
+.gallery-card.active {
+  background: #ffffec ;
+  opacity: 1;
+}
+
+/* Flèches de navigation */
+.gallery-nav {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.gallery-nav button {
+  background: rgba(242, 130, 17, 0.739);
+  border: none;
+  font-size: 24px;
+  margin: 0 10px;
+  cursor: pointer;
+  padding: 5px 12px;
+}
+.gallery-nav button:hover{
+    background: rgba(247, 169, 92, 0.739);
+}
+
+/* End of new/updated section */

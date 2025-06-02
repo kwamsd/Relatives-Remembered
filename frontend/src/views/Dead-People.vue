@@ -2,7 +2,7 @@
     <main class="dead-main">
         <section class="left-section">
             <div class="photo-frame">
-                <img src="../assets/images/phoyo-pp.jpg" alt="Portrait of Lilia Sanchez" />
+                <img src="../assets/images/photo-pp.jpg" alt="Portrait of Lilia Sanchez" />
             </div>
             <div class="identity-card">
                 <p><span style="font-weight: 300; font-size: 16px;">Lilia</span> <strong>SANCHEZ</strong></p>

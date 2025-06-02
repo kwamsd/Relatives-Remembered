@@ -1,3 +1,4 @@
+<!-- frontend/src/views/Signup.vue -->
 <template>
   <div class="signup-page">
     <div id="signup-form">
@@ -57,9 +58,7 @@
   </div>
 </template>
 
-
 <script setup>
-
 import '../assets/css/account/Signup.css'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'

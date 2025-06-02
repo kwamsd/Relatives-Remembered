@@ -14,7 +14,7 @@ const routes = [
   { path: '/list', component: List },
   { path: '/login', component: Login},
   { path: '/signup', component: Signup},
-  { path: '/dead-people', component: Dead},
+  { path: '/template', component: Dead},
   { path: '/survey', component: Survey},
   { path: '/donation', component: Donation}
 ]

@@ -1,9 +1,10 @@
+<!-- frontend/src/components/Login.vue -->
 <template>
   <div class="login-page">
     <form class="login-form" @submit.prevent="handleLogin">
-      <h2>Connexion</h2>
+      <h2>Login Space</h2>
       <div class="form-group">
-        <label for="email">Adresse e-mail</label>
+        <label for="email">Email</label>
         <input
           id="email"
           type="email"
@@ -14,7 +15,7 @@
         />
       </div>
       <div class="form-group">
-        <label for="password">Mot de passe</label>
+        <label for="password">Password</label>
         <input
           id="password"
           type="password"
@@ -25,13 +26,13 @@
         />
       </div>
       <div class="form-actions">
-        <button type="submit" class="login-btn">Se connecter</button>
+        <button type="submit" class="login-btn">Login</button>
       </div>
       <div v-if="error" class="form-error">{{ error }}</div>
-        <p class="signup-link">
-            Don't have an account?
-            <router-link to="/signup">Sign up</router-link>
-        </p>
+      <p class="signup-link">
+        Don't have an account?
+        <router-link to="/signup">Sign up</router-link>
+      </p>
     </form>
   </div>
 </template>
@@ -51,7 +52,7 @@ async function handleLogin() {
   error.value = ''
   try {
     await $auth.login(email.value, password.value)
-    router.push('/')   // redirige vers la page principale
+    router.push('/')   // redirige vers la page principale si ok
   } catch (e) {
     error.value = $auth.state.error
   }

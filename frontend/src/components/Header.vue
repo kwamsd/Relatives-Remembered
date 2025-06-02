@@ -1,3 +1,4 @@
+<!-- frontend/src/components/Header.vue -->
 <template>
   <header class="app-header">
     <div class="header-content">
@@ -22,7 +23,7 @@
             @click="logout"
             class="nav-btn logout-btn"
           >
-            Déconnexion
+            Logout
           </button>
 
           <!-- Sinon : lien de connexion unique -->
@@ -31,7 +32,7 @@
             to="/login"
             class="nav-btn user-btn"
           >
-            Se connecter
+            Login
           </router-link>
         </div>
       </nav>
