@@ -1,3 +1,4 @@
+// backend/models/userModel.js
 const pool = require('../db');
 
 exports.createUser = async ({ lastname, firstname, mail, password, mobilephone, username }) => {
@@ -22,6 +23,15 @@ exports.getUserByUsername = async (username) => {
   const result = await pool.query(
     `SELECT * FROM users WHERE username = $1`,
     [username]
+  );
+  return result.rows[0];
+};
+
+exports.getUserById = async (id) => {
+  const result = await pool.query(
+    `SELECT id, lastname, firstname, mail, username, mobilephone
+     FROM users WHERE id = $1`,
+    [id]
   );
   return result.rows[0];
 };

@@ -26,13 +26,6 @@ app.use(cookieParser());            // ← ajoute cookie-parser
 const authRoutes = require('./routes/auth.js');
 app.use('/auth', authRoutes);
 
-app.get('/ping', (req, res) => {
-  res.send('pong');
-});
-// // Routes
-// const deceasedRoutes = require('./routes/deceased');
-// app.use('/api/deceased', deceasedRoutes);
-
 // Lancement du serveur
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

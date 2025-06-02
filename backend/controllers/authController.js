@@ -1,11 +1,26 @@
+// backend/controllers/authController.js
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const {
   createUser,
   getUserByEmail,
-  getUserByUsername
+  getUserByUsername,
+  getUserById
 } = require('../models/userModel');
+
+exports.getProfile = async (req, res) => {
+  try {
+    const user = await getUserById(req.user.id);
+    if (!user) return res.status(404).json({ error: 'Utilisateur introuvable' });
+    // Ne renvoyez pas le password
+    delete user.password;
+    res.json(user);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Erreur serveur' });
+  }
+};
 
 exports.registerUser = async (req, res) => {
   const errors = validationResult(req);
@@ -57,22 +72,47 @@ exports.registerUser = async (req, res) => {
 };
 
 exports.loginUser = async (req, res) => {
+  // 1) Validation des champs
   const errors = validationResult(req);
-  if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
 
   const { mail, password } = req.body;
 
   try {
+    // 2) Récupérer l'utilisateur par e-mail
     const user = await getUserByEmail(mail);
-    if (!user) return res.status(401).json({ error: 'Utilisateur non trouvé' });
+    if (!user) {
+      return res.status(401).json({ error: 'Utilisateur non trouvé' });
+    }
 
+    // 3) Vérifier le mot de passe
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(401).json({ error: 'Mot de passe incorrect' });
+    if (!isMatch) {
+      return res.status(401).json({ error: 'Mot de passe incorrect' });
+    }
 
-    const token = jwt.sign({ userId: user.id, mail: user.mail }, process.env.JWT_SECRET, { expiresIn: '24h' });
-    res.json({ token });
+    // 4) Générer le JWT
+    const token = jwt.sign(
+      { userId: user.id, mail: user.mail },
+      process.env.JWT_SECRET,
+      { expiresIn: '24h' }
+    );
+
+    // 5) Stocker le token dans un cookie HTTP-Only
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 24 * 60 * 60 * 1000 // expire dans 24h
+    });
+
+    // 6) On renvoie juste un message de succès
+    return res.json({ message: 'Connecté' });
   } catch (error) {
-    res.status(500).json({ error: 'Erreur serveur' });
+    console.error(error);
+    return res.status(500).json({ error: 'Erreur serveur' });
   }
 };
 
