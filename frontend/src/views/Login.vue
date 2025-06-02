@@ -37,26 +37,23 @@
 </template>
 
 <script setup>
+import '../assets/css/account/login.css'
 import { ref } from 'vue'
-import '../assets/css/Login.css'
+import { useRouter } from 'vue-router'
+import { authService as $auth } from '../services/authService.js'
 
 const email = ref('')
 const password = ref('')
 const error = ref('')
+const router = useRouter()
 
-function handleLogin() {
+async function handleLogin() {
   error.value = ''
-  // Ici tu pourras mettre ton appel API ou logique d'authentification
-  if (!email.value || !password.value) {
-    error.value = 'Veuillez remplir tous les champs.'
-    return
-  }
-  // Simule une connexion (à remplacer par ta logique)
-  if (email.value === 'test@example.com' && password.value === 'password') {
-    alert('Connexion réussie !')
-    // Redirection ou logique supplémentaire ici
-  } else {
-    error.value = 'Identifiants incorrects.'
+  try {
+    await $auth.login(email.value, password.value)
+    router.push('/')   // redirige vers la page principale
+  } catch (e) {
+    error.value = $auth.state.error
   }
 }
 </script>

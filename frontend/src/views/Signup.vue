@@ -57,9 +57,13 @@
   </div>
 </template>
 
+
 <script setup>
+
+import '../assets/css/account/Signup.css'
 import { ref } from 'vue'
-import '../assets/css/Signup.css'
+import { useRouter } from 'vue-router'
+import { authService as $auth } from '../services/authService.js'
 
 const lastname = ref('')
 const firstname = ref('')
@@ -69,26 +73,24 @@ const username = ref('')
 const password = ref('')
 const error = ref('')
 const success = ref('')
+const router = useRouter()
 
-function handleSignup() {
+async function handleSignup() {
   error.value = ''
   success.value = ''
-  // Validation simple côté client
-  if (
-    !lastname.value ||
-    !firstname.value ||
-    !mail.value ||
-    !mobilephone.value ||
-    !username.value ||
-    !password.value
-  ) {
-    error.value = 'Please fill in all fields.'
-    return
+  try {
+    await $auth.register({
+      lastname: lastname.value,
+      firstname: firstname.value,
+      mail: mail.value,
+      mobilephone: mobilephone.value,
+      username: username.value,
+      password: password.value
+    })
+    success.value = 'Compte créé ! Vous pouvez vous connecter.'
+    setTimeout(() => router.push('/login'), 1500)
+  } catch {
+    error.value = $auth.state.error
   }
-  // Ici tu pourras mettre ton appel API ou logique d'inscription
-  // Pour le moment, on simule une réussite
-  success.value = 'Account created! (simulation)'
-  // Réinitialise les champs si besoin
-  // lastname.value = firstname.value = mail.value = mobilephone.value = username.value = password.value = ''
 }
 </script>

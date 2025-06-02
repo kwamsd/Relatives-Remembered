@@ -3,78 +3,82 @@
   background: linear-gradient(0deg, #798F8F 0%, #E1E1C5 100%);
   color: white;
   box-shadow: 0 2px 8px rgba(100, 108, 255, 0.1);
-  padding: 0;
 }
 
 .header-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   max-width: 1280px;
   margin: 0 auto;
   padding: 0.5rem 2rem;
-  gap: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* <-- espace entre les zones */
 }
 
 .navbar {
   display: flex;
-  gap: 5rem;
+  gap: 1.5rem; /* un peu moins large */
 }
 
-.navbar.left {
-  justify-content: flex-end;
-  flex: 1;
-}
-
-.navbar.right {
-  justify-content: flex-start;
-  flex: 1;
-}
-
+/* Logo centré naturellement par l'espace */
 .site-logo {
   height: 56px;
-  display: block;
-  margin: 0 5rem;
 }
 
+/* Boutons de nav */
 .nav-btn {
   background: none;
   border: none;
   color: white;
-  padding: 0.5rem 1.2rem;
+  padding: 0.5rem 1rem;
   font-size: 1rem;
   cursor: pointer;
   border-radius: 6px;
-  transition: 0.3s;
+  transition: color 0.3s;
 }
 .nav-btn:hover {
   color: #e2f510;
 }
 
+/* Bouton "Se connecter" */
 .user-btn {
   background: #fff;
-  border: 2px solid #798F8F;
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
+  color: #798F8F;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+.user-btn:hover {
+  background: #798f8f22;
+  color: white;
+}
+
+/* Zone utilisateur (point + déconnexion) */
+.user-area {
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-left: 1rem;
-  padding: 0;
-  transition: background 0.2s, border-color 0.2s;
-  box-shadow: 0 2px 8px rgba(120,143,143,0.10);
+  gap: 0.75rem;
+}
+
+/* Point vert de connexion */
+.online-dot {
+  width: 10px;
+  height: 10px;
+  background: #2ecc40;
+  border-radius: 50%;
+}
+
+/* Bouton "Déconnexion" */
+.logout-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-weight: 600;
   cursor: pointer;
+  transition: color 0.3s;
 }
-
-.user-btn:hover,
-.user-btn:focus {
-  background: #798F8F22;
-  border-color: #222;
-}
-
-.user-icon {
-  display: block;
-  width: 24px;
-  height: 24px;
+.logout-btn:hover {
+  color: #e2f510;
 }

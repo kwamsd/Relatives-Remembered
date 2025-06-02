@@ -1,7 +1,6 @@
 CREATE DATABASE remembered_db;
 \c remembered_db;
 
--- Table: users
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     lastname VARCHAR(100) NOT NULL,
@@ -12,15 +11,15 @@ CREATE TABLE users (
     username VARCHAR(100) UNIQUE NOT NULL
 );
 
--- Table: admin
-CREATE TABLE admin (
+-- Table: admins (droits spéciaux)
+CREATE TABLE admins (
     id SERIAL PRIMARY KEY,
     mail VARCHAR(255) UNIQUE NOT NULL,
     password TEXT NOT NULL
 );
 
--- Table: template (deceased person)
-CREATE TABLE template (
+-- Table: templates (profils de défunts créés par un user)
+CREATE TABLE templates (
     id SERIAL PRIMARY KEY,
     id_user INTEGER REFERENCES users(id) ON DELETE SET NULL,
     lastname VARCHAR(100) NOT NULL,
@@ -32,37 +31,36 @@ CREATE TABLE template (
     job VARCHAR(100),
     nationality VARCHAR(100),
     gender VARCHAR(50),
-    anecdote TEXT,
-    image_url TEXT,
     description TEXT,
+    image_url TEXT,
     date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     validated BOOLEAN DEFAULT FALSE
 );
 
--- Table: background
-CREATE TABLE background (
+-- Table: backgrounds (choix de background + couleurs)
+CREATE TABLE backgrounds (
     id SERIAL PRIMARY KEY,
-    id_template INTEGER REFERENCES template(id) ON DELETE CASCADE,
+    id_template INTEGER REFERENCES templates(id) ON DELETE CASCADE,
     id_user INTEGER REFERENCES users(id) ON DELETE SET NULL,
     background_url TEXT,
-    color_main VARCHAR(7) NOT NULL, -- HEX code, e.g., #FF5733
+    color_main VARCHAR(7) NOT NULL,
     color_overlay VARCHAR(7) NOT NULL
 );
 
--- Table: anecdote
-CREATE TABLE anecdote (
+-- Table: anecdotes (visiteurs + approval)
+CREATE TABLE anecdotes (
     id SERIAL PRIMARY KEY,
-    id_template INTEGER REFERENCES template(id) ON DELETE CASCADE,
+    id_template INTEGER REFERENCES templates(id) ON DELETE CASCADE,
     content TEXT NOT NULL,
     is_approved BOOLEAN DEFAULT FALSE,
-    email_submitted VARCHAR(255),
+    submitter_name VARCHAR(100),
     date_submitted TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Table: donation (optionnelle si la page donation est active)
-CREATE TABLE donation (
+-- Table: donations (soutiens financiers facultatifs)
+CREATE TABLE donations (
     id SERIAL PRIMARY KEY,
-    id_template INTEGER REFERENCES template(id) ON DELETE CASCADE,
+    id_template INTEGER REFERENCES templates(id) ON DELETE CASCADE,
     amount DECIMAL(10,2) NOT NULL,
     donor_name VARCHAR(255),
     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
