@@ -22,14 +22,25 @@
     font-size: 20px;
 }
 
-.honor-box button {
+.honor-btn {
     margin-top: 15px;
     background-color: #e1e4d6;
     border: none;
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    font-size: 20px;
+    font-size: 32px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.honor-btn:hover {
+    background-color: #cfd2be;
 }
 
 .search-box {
@@ -163,12 +174,17 @@
     color: black;
 }
 
-.cta-section button {
-    background: #789095;
-    color: white;
+.cta-btn {
+    background-color: #e1e4d6;
+    color: #333;
     border: none;
     padding: 10px 20px;
     font-size: 16px;
     border-radius: 5px;
     cursor: pointer;
+    transition: background 0.2s;
+}
+
+.cta-btn:hover {
+    background-color: #cfd2be;
 }

@@ -22,7 +22,7 @@
             @click="logout"
             class="nav-btn logout-btn"
           >
-            Déconnexion
+            Disconnect
           </button>
 
           <!-- Sinon : lien de connexion unique -->
@@ -31,7 +31,7 @@
             to="/login"
             class="nav-btn user-btn"
           >
-            Se connecter
+            Connect
           </router-link>
         </div>
       </nav>

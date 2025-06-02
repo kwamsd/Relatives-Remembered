@@ -10,8 +10,8 @@
   </div>
   <section class="honor-section">
         <div class="honor-box">
-            <span>HONOR THE MEMORY OF A LOVED ONE</span>
-            <button><a href="/survey">+</a></button>
+            <span>HONOUR THE MEMORY OF A LOVED ONE</span>
+            <a href="/survey" class="honor-btn">+</a>
         </div>
         <div class="search-box">
             <p>REMEMBER SOMEONE SPECIAL</p>
@@ -23,15 +23,15 @@
   <section class="gallery">
     <div class="gallery-card">
       <img src="../assets/images/photo-pp.jpg" alt="">
-      <p>NOM Prénom</p>
+      <p>NAME Firstname</p>
     </div>
     <div class="gallery-card">
       <img src="../assets/images/photo-pp.jpg" alt="">
-      <p>NOM PRENOM</p>
+      <p>NAME Firstname</p>
     </div>
     <div class="gallery-card">
       <img src="../assets/images/photo-pp.jpg" alt="">
-      <p>NOM PRENOM</p>
+      <p>NAME Firstname</p>
     </div>
   </section>
   <div class="gallery-nav">
@@ -60,7 +60,7 @@
   <section class="cta-section">
     <h2>Ready to Share a Memory?</h2>
     <p>Create a tribute and keep the memory of your loved ones alive.</p>
-    <button><a href="/survey">Start Now</a></button>
+    <a href="/survey" class="cta-btn">Start Now</a>
   </section>
 </template>
 

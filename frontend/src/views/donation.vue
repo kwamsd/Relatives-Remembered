@@ -1,18 +1,18 @@
 <template>
   <div class="donation-container">
-    <h1 class="title">Soutenez une bonne cause</h1>
+    <h1 class="title">Support a good cause</h1>
     <p class="subtitle">
-      Chaque don contribue à honorer la mémoire de ceux que nous aimons.
+      Each gift helps honour the memory of those we love.
     </p>
 
     <form class="donation-form" @submit.prevent="submitDonation">
       <div class="input-group">
-        <label for="amount">Montant (€)</label>
+        <label for="amount">Amount (£)</label>
         <input type="number" id="amount" v-model="amount" min="1" required />
       </div>
 
       <div class="input-group">
-        <label for="name">Nom complet</label>
+        <label for="name">Full name</label>
         <input type="text" id="name" v-model="name" required />
       </div>
 
@@ -21,9 +21,9 @@
         <input type="email" id="email" v-model="email" required />
       </div>
 
-      <button type="submit">Faire un don</button>
+      <button type="submit">Donate</button>
 
-      <p v-if="submitted" class="confirmation">Merci infiniment pour votre soutien 💖</p>
+      <p v-if="submitted" class="confirmation">Thank you very much for your support 💖</p>
     </form>
   </div>
 </template>

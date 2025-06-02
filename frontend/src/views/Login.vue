@@ -3,29 +3,29 @@
     <form class="login-form" @submit.prevent="handleLogin">
       <h2>Connexion</h2>
       <div class="form-group">
-        <label for="email">Adresse e-mail</label>
+        <label for="email">Mail Adress</label>
         <input
           id="email"
           type="email"
           v-model="email"
           required
           autocomplete="username"
-          placeholder="votre@email.com"
+          placeholder="you@email.com"
         />
       </div>
       <div class="form-group">
-        <label for="password">Mot de passe</label>
+        <label for="password">Password</label>
         <input
           id="password"
           type="password"
           v-model="password"
           required
           autocomplete="current-password"
-          placeholder="Votre mot de passe"
+          placeholder="Your password"
         />
       </div>
       <div class="form-actions">
-        <button type="submit" class="login-btn">Se connecter</button>
+        <button type="submit" class="login-btn">Connect</button>
       </div>
       <div v-if="error" class="form-error">{{ error }}</div>
         <p class="signup-link">

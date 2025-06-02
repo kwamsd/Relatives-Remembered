@@ -7,21 +7,18 @@ require('dotenv').config();
 
 const PORT = process.env.PORT || 5000;
 
-const templateRoutes = require('./routes/template');
 const deceasedRoutes = require('./routes/deceased');
 const anecdoteRoutes = require('./routes/anecdotes');
-const backgroundRoutes = require('./routes/backgrounds');
 
 app.use('/api/deceased', deceasedRoutes);
 app.use('/api', anecdoteRoutes);
-app.use('/api', backgroundRoutes);
 // Middlewares
 app.use(cors({
   origin: 'http://localhost:5173',  // ton front Vite
   credentials: true                 // autorise l'envoi des cookies
 }));
 app.use(express.json());
-app.use('/api/templates', templateRoutes);
+app.use('/uploads', express.static('uploads'));
 
 app.use(cookieParser());            // ← ajoute cookie-parser
 
