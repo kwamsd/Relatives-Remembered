@@ -31,14 +31,14 @@
     </section>
 
     <section class="section-donation section-donation--alt">
-      <h2 class="donation-heading">PayPal or JustGiving</h2>
+      <h2 class="donation-heading">You can also donate by : <br>PayPal or JustGiving by clickinf on the logos</h2>
       <div class="donation-alt-links">
         <a href="https://www.paypal.com/GB/fundraiser/charity/4388391" target="_blank" rel="noopener">
-          <img src="https://ww1rc.org/wp-content/uploads/2024/09/Paypal_2014_logo.png" alt="Donate via PayPal"
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/PayPal_2024.svg/langfr-2880px-PayPal_2024.svg.png" alt="Donate via PayPal"
             class="donation-alt-logo" />
         </a>
         <a href="https://www.justgiving.com/ww1rc" target="_blank" rel="noopener">
-          <img src="https://ww1rc.org/wp-content/uploads/2024/10/IMG_3027-3.png" alt="Donate via JustGiving"
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/JustGiving.svg/500px-JustGiving.svg.png" alt="Donate via JustGiving"
             class="donation-alt-logo" />
         </a>
       </div>

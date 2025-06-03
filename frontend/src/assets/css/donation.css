@@ -3,7 +3,11 @@
   width: 100vw;
   min-height: 100vh;
   padding: 3rem 2rem;
-  background: linear-gradient(135deg, #ffffff 0%, #bebeaa 100%);
+  /* background: linear-gradient(135deg, #ffffff 0%, #bebeaa 100%); */
+  /* background: #e1edf1; */
+  background-image: url(https://img.freepik.com/premium-photo/blur-colorful-background-gradient-blurred-colorful-with-grain-noise-effect_558873-5103.jpg?semt=ais_hybrid&w=740);
+background-size: cover;
+  background-position: center;
   color: #000000;
   display: flex;
   flex-direction: column;
@@ -16,6 +20,7 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 0.5rem;
+  color: #0077ff;
 }
 
 .donation-subtitle {
@@ -34,9 +39,13 @@
 
 /* Info */
 .section-donation--info {
-  background: rgba(0, 0, 0, 0.05);
+  background: rgb(255, 255, 255);
+  /* background-image: url(https://img.freepik.com/premium-photo/blur-colorful-background-gradient-blurred-colorful-with-grain-noise-effect_558873-5103.jpg?semt=ais_hybrid&w=740);
+background-size: cover;
+  background-position: center; */
   padding: 2rem;
-  border-left: 6px solid #f2ff00;
+  /* border-left: 6px solid #f2ff00; */
+  border-left: 6px solid #0077ff;
 }
 
 .donation-heading {
@@ -63,8 +72,8 @@
 }
 
 .donation-button {
-  background: #f2ff00;
-  color: #000000;
+  background: #0077ff;
+  color: #ffffff;
   text-transform: uppercase;
   padding: 0.9rem 1.8rem;
   text-decoration: none;
@@ -77,9 +86,9 @@
 }
 
 .donation-button--custom {
-  background: transparent;
-  border: 2px solid #f2ff00;
-  color: #f2ff00;
+  background: white;
+  border: 2px solid #0077ff;
+  color: #0077ff;
 }
 
 /* Alternatives */
