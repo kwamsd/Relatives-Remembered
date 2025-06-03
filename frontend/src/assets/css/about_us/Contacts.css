@@ -1,0 +1,25 @@
+.contact-page {
+  padding: 60px 20px; max-width: 1000px; margin: 0 auto;
+  line-height: 1.7; color: #333;
+}
+.contact-page h1 {
+  text-align: center; font-family: 'Pacifico', cursive; color: #789095;
+  margin-bottom: 20px;
+}
+.details {
+  background: #e8e6bc; border-radius: 8px;
+  padding: 25px; margin-bottom: 40px;
+}
+.details h2 { margin-top: 0; }
+.details a { color: #333; text-decoration: underline; }
+.map {
+  border: 4px solid #789095; border-radius: 8px;
+  overflow: hidden; margin-bottom: 40px;
+}
+.map iframe { width: 100%; height: 340px; border: 0; }
+.donate { text-align: center; }
+.donate-btn {
+  background: #f28211; color: #fff; padding: 12px 28px;
+  border-radius: 6px; font-weight: 600; text-decoration: none;
+}
+.donate-btn:hover { background: #f7a95c; }

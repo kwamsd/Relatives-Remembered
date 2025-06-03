@@ -9,19 +9,20 @@ const state = reactive({
 
 const API = 'http://localhost:3000/auth'
 
-async function fetchMe() {
+async function fetchMe () {
   state.loading = true
   try {
-    const res = await fetch(`${API}/me`, {
-      credentials: 'include'
-    })
+    const res = await fetch(`${API}/me`, { credentials: 'include' })
+    console.log('[fetchMe] status', res.status)           // <- ajoutez
     if (!res.ok) {
       state.user = null
     } else {
       state.user = await res.json()
+      console.log('[fetchMe] user', state.user)           // <- ajoutez
     }
-  } catch {
+  } catch (e) {
     state.user = null
+    console.error(e)
   } finally {
     state.loading = false
   }

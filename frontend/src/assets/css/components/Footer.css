@@ -6,3 +6,11 @@ footer {
     font-size: 14px;
     margin: 0;
 }
+
+footer a{
+    color: white;
+    transition: 0.3s ease-in-out;
+}
+footer a:hover{
+    filter: brightness(1.5)
+}

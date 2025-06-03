@@ -1,0 +1,15 @@
+.about-subnav {
+  display: flex; justify-content: center; gap: 24px;
+  flex-wrap: wrap; margin: 0 auto 40px;
+}
+.about-subnav a {
+  color: #789095; text-decoration: none;
+  position: relative; padding-bottom: 2px;
+}
+.about-subnav a:hover,
+.about-subnav a.active { font-weight: 600; }
+.about-subnav a:hover::after,
+.about-subnav a.active::after {
+  content: ''; position: absolute; left: 0; bottom: -3px;
+  width: 100%; height: 2px; background: #789095;
+}

@@ -1,4 +1,15 @@
-const pool = require('../db');
+const pool = require('../db')
+
+exports.getDeceasedByUserId = async (userId) => {
+  const { rows } = await pool.query(
+    `SELECT id, lastname, firstname
+       FROM deceased
+       WHERE created_by = $1
+       ORDER BY created_at DESC`,
+    [userId]
+  )
+  return rows
+}
 
 // Créer un profil de défunt
 exports.insertProfile = async ({ firstname, lastname, birth, death, biography, photo_url, theme, user_id }) => {

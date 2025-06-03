@@ -1,4 +1,3 @@
-// backend/models/userModel.js
 const pool = require('../db');
 
 exports.createUser = async ({ lastname, firstname, mail, password, mobilephone, username }) => {

@@ -1,5 +1,7 @@
-const express = require('express');
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
+const { protect } = require('../middlewares/authMiddleware')
+const { getDeceasedByUser } = require('../controllers/deceasedController')
 const deceasedController = require('../controllers/deceasedController');
 const { protect } = require('../middlewares/authMiddleware');
 const multer = require('multer');
@@ -22,5 +24,8 @@ router.post('/', protect, upload.single('photo'), deceasedController.createProfi
 
 router.get('/', deceasedController.getAllProfiles);
 router.get('/:id', deceasedController.getProfileById);
+
+
+router.get('/mine', protect, getDeceasedByUser)
 
 module.exports = router;

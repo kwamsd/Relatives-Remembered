@@ -1,0 +1,54 @@
+/* ───────────────────────────────
+   PAGE BACKGROUND
+   ─────────────────────────────── */
+.who-we-are {
+  /* dégradé discret derrière toute la page */
+  background: linear-gradient(180deg,#f7f7f4 0%,#e8e6bc 100%);
+  padding: 60px 20px;
+  font-family: "Open Sans", sans-serif;
+  color: #2b2b2b;
+  line-height: 1.8;
+}
+
+/* ───────────────────────────────
+   TITRES
+   ─────────────────────────────── */
+.who-we-are h1 {
+  text-align: center;
+  font-family: "Pacifico", cursive;
+  color: #4f6468;
+  font-size: 2.4rem;
+  margin-bottom: 40px;
+}
+
+.who-we-are h2 {
+  color: #4f6468;
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+}
+
+/* ───────────────────────────────
+   SECTIONS « CARTE »
+   ─────────────────────────────── */
+.who-we-are section {
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(2px);
+  border: 1px solid #daddb4;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  padding: 32px;
+  margin-bottom: 50px;
+}
+
+/* ───────────────────────────────
+   LISTE À PUCE
+   ─────────────────────────────── */
+.who-we-are ul {
+  list-style: disc inside;
+  padding-left: 0;      /* déjà inside */
+  margin-top: 12px;
+}
+
+@media (min-width: 900px) {
+  .who-we-are { max-width: 900px; margin: 0 auto; }
+}

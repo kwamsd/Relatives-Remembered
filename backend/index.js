@@ -5,13 +5,10 @@ const cookieParser = require('cookie-parser');        // ← import
 const app = express();
 require('dotenv').config();
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
-const deceasedRoutes = require('./routes/deceased');
-const anecdoteRoutes = require('./routes/anecdotes');
 
-app.use('/api/deceased', deceasedRoutes);
-app.use('/api', anecdoteRoutes);
+
 // Middlewares
 app.use(cors({
   origin: 'http://localhost:5173',  // ton front Vite
@@ -19,11 +16,15 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use('/uploads', express.static('uploads'));
-
 app.use(cookieParser());            // ← ajoute cookie-parser
 
 // Routes
 const authRoutes = require('./routes/auth.js');
+// const deceasedRoutes = require('./routes/deceased');
+// const anecdoteRoutes = require('./routes/anecdotes');
+
+// app.use('/api/deceased', deceasedRoutes);
+// app.use('/api', anecdoteRoutes);
 app.use('/auth', authRoutes);
 
 // Lancement du serveur

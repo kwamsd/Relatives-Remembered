@@ -1,12 +1,12 @@
 main {
       padding: 60px 20px;
-      background-image: url('../image/background_website.png');
     }
     .bio-container {
       display: flex;
       flex-wrap: wrap;
       background-color: rgba(217, 217, 217, 0.57);
-      border: 5px solid #879b9f;
+      border: 2px solid #E8E6BC;
+      border-radius: 10px;
       width: 90%;
       max-width: 800px;
       margin: 0 auto;

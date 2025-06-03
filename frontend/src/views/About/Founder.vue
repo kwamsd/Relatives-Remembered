@@ -1,8 +1,14 @@
 <template>
 <main>
+    <div class="about-subnav">
+      <router-link to="/about"                >Overview</router-link>
+      <router-link to="/about/who-we-are"     >Who We Are</router-link>
+      <router-link to="/about/contact" class="active">Contact</router-link>
+      <router-link to="/about/founder"        >Founder</router-link>
+    </div>
     <div class="bio-container">
       <div class="left-panel">
-        <img src="../assets/images/pp_ceo.jpeg" alt="Charles Haskell portrait">
+        <img src="../../assets/images/pp_ceo.jpeg" alt="Charles Haskell portrait">
         <div class="name">Charles Haskell</div>
         <div class="profile-info">
           <strong>Title:</strong> Founder and CEO<br>
@@ -41,5 +47,6 @@
 <script setup>
 // Mets ici le chemin de ton image si tu en as une
 const imageSrc = ''
-import '../assets/css/about_us/AboutUs.css'
+import '../../assets/css/about_us/Founder.css'
+import '../../assets/css/about_us/_Subnav.css'
 </script>
