@@ -14,6 +14,8 @@ import Donation from '../views/donation.vue'
 import MonEspace   from '../views/MonEspace/MonEspace.vue'
 import UserInfo    from '../views/MonEspace/UserInfo.vue'
 import MesDefunts  from '../views/MonEspace/MesDefunts.vue'
+import { watch } from 'vue'
+import { authService } from '../services/authService'
 
 const routes = [
   { path: '/',            component: Home,      meta:{title:'Home | Relatives Remembered'} },
@@ -29,7 +31,7 @@ const routes = [
   { path: '/login', component: Login,  meta:{title:'Log In | Relatives Remembered'} },
   { path: '/signup',component: Signup, meta:{title:'Sign Up | Relatives Remembered'} },
   { path: '/template', component: Dead, meta:{title:'Tribute Template | Relatives Remembered'} },
-  { path: '/survey',   component: Survey, meta:{title:'Survey | Relatives Remembered'} },
+  { path: '/survey',   component: Survey, meta:{title:'Survey | Relatives Remembered', requiresAuth: true}, },
   { path: '/donation', component: Donation, meta:{title:'Donation | Relatives Remembered'} },
   {
     path:'/my-space', component:MonEspace, meta:{title:'My Space | Relatives Remembered'},
@@ -41,6 +43,21 @@ const routes = [
 ]
 
 const router = createRouter({ history:createWebHistory(), routes })
+
+router.beforeEach(async (to, from, next) => {
+  // 1. on attend que fetchMe ait fini si l’utilisateur a rechargé la page
+  if (authService.state.loading) await new Promise(r => {
+    const stop = watch(() => authService.state.loading, l => { if (!l){ stop(); r(); }});
+  });
+
+  // 2. on vérifie les pages protégées
+  if (to.meta.requiresAuth && !authService.state.user) {
+    next({ path: '/login', query: { redirect: to.fullPath } }); // redirige vers le login
+  } else {
+    next(); // autorisé
+  }
+});
+
 
 router.afterEach(to=>{
   const nearest = to.matched.slice().reverse().find(r=>r.meta&&r.meta.title)
