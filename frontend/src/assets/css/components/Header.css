@@ -36,7 +36,7 @@
   transition: color 0.3s;
 }
 .nav-btn:hover {
-  color: #e2f510;
+  color: #E8E6BC;
 }
 
 /* Bouton "Se connecter" */
@@ -82,3 +82,31 @@
 .logout-btn:hover {
   color: #e2f510;
 }
+/* animation soulignée au survol  (facultative mais “feedback visuel”) */
+.nav-btn {
+  position: relative;
+}
+.nav-btn::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -4px;       /* distance sous le texte */
+  width: 0; height: 2px;
+  background: #E8E6BC;
+  transition: width .25s ease;
+}
+.nav-btn:hover::after { width: 100%; }
+
+/* ▼ le même dropdown que “MY SPACE”, réutilisable partout */
+.dropdown            { position: relative; }
+.dropdown-content    {
+  position: absolute; top: 100%; left: 0;
+  display: none; flex-direction: column;
+  min-width: 170px; padding: .5rem 0;
+  background: #798F8F; border-radius: 6px;
+  z-index: 20;
+}
+.dropdown:hover .dropdown-content { display: flex; }
+.dropdown-content a {
+  color: #fff; padding: .5rem 1rem; text-align: left;
+}
+.dropdown-content a:hover { background: rgba(255,255,255,.12); }

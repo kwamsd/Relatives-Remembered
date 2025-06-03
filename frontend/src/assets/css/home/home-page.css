@@ -7,7 +7,6 @@
   display: flex;
   justify-content: space-around;
   padding: 40px 10px;
-  background: #eaeae8 url('../../images/background.png');
 }
 .honor-box,
 .search-box {
@@ -120,6 +119,16 @@
   border-radius: 10px;
   width: 250px;
   color: black;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.feature i {
+  font-size: 2rem;
+  color: rgba(242, 130, 17, 0.739);
 }
 
 .testimonial {
@@ -145,4 +154,188 @@
 
 .cta-btn:hover {
     background-color: #cfd2be;
+}
+
+
+/* ==============================================
+   NEW / UPDATED RULES START HERE
+   ============================================== */
+
+/* 1. Free‐creation notice styling */
+.free-notice {
+  background-color: #e8e6bc;
+  padding: 5px;
+  text-align: center;
+  font-family: 'Pacifico', cursive;
+  color: #789095;
+  font-size: 1.4rem;
+}
+
+/* === GALERIE (version simplifiée) === */
+
+/* Fenêtre masquant tout sauf un seul card à la fois */
+.gallery-wrapper {
+  /* margin: 0 auto 40px; */
+  /*width: 220px;     200px (card) + 20px (écart) */
+  overflow: hidden;
+  background: #798f8f;
+  padding: 20px;
+  border-top: 1px solid #E1E1C5 ;
+}
+
+/* Piste (track) déroulante */
+.gallery-track {
+  display: flex;
+  gap: 20px;               /* même espace qu’en JS (CARD_WIDTH = 220 : 200+20) */
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Style de base pour chaque carte (inactive) */
+.gallery-card {
+  flex: 0 0 200px;         /* largeur fixe de 200px */
+  text-align: center;
+  font-family: 'Pacifico', cursive;
+  padding: 10px;
+  background: #b7b79f ;
+  opacity: 0.5;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Image à l’intérieur de la card */
+.gallery-card img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+/* Carte active (fond différent + pleine opacité) */
+.gallery-card.active {
+  background: #ffffec ;
+  opacity: 1;
+}
+
+/* Flèches de navigation */
+.gallery-nav {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.gallery-nav button {
+  background: #f28211;
+  border: none;
+  width: 50px;
+  height:50px;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 10px;
+  cursor: pointer;
+  padding: 5px 12px;
+  border-radius: 100%;
+  color: white;
+  transition: transform .2s ease, background .2s ease;
+}
+.gallery-nav button:hover{
+    background:#f7a95c; 
+    transform: translateY(-2px);
+}
+/* ──────────────────────────────────────────────
+   Wrapper : on passe en flex pour placer le texte à gauche,
+   le carrousel à droite
+   ────────────────────────────────────────────── */
+.gallery-wrapper {
+  display: flex;               /* ← ajout */
+  gap: 30px;                   /* espace entre texte & galerie */
+  align-items: center;
+  flex-wrap: wrap;             /* pile en colonne sur mobile */
+  overflow: hidden;
+  background: #798f8f;
+  padding: 20px;
+  border-top: 1px solid #E1E1C5;
+}
+
+/* bloc texte */
+.gallery-info {
+  color: #fff;
+  max-width: 260px;
+  flex: 0 0 260px;             /* largeur fixe desktop */
+}
+.gallery-info h3 {
+  margin: 0 0 8px;
+  font-family: 'Pacifico', cursive;
+  font-size: 1.6rem;
+}
+.gallery-info p {
+  margin: 0;
+  line-height: 1.45;
+  font-style: italic;
+  font-size: .95rem;
+}
+
+/* carrousel conserve son style existant */
+.gallery-container { flex: 1 1 auto; }
+
+/* End of new/updated section */
+
+/* ──────────────────────────────────────────────
+   PLUS (“Honor”) button – fresh look
+   ────────────────────────────────────────────── */
+.honor-btn {
+  margin-top: 18px;
+  width: 60px;              /* larger circle */
+  height: 60px;
+  border-radius: 50%;
+  font-size: 42px;
+  font-weight: 700;
+  background: #f28211;
+  color: #fff;
+  border: none;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,.12);
+  cursor: pointer;
+  transition: transform .2s ease, background .2s ease;
+}
+.honor-btn:hover       { background:#f7a95c; transform: translateY(-2px); }
+.honor-btn:active      { transform: scale(.96); }
+
+/* ──────────────────────────────────────────────
+   Modal (login prompt)
+   ────────────────────────────────────────────── */
+.login-modal {
+  position: fixed; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(3px);
+  background: rgba(0,0,0,.35);
+  z-index: 2000;
+}
+.login-modal-content {
+  position: relative;
+  background: #ffffec;
+  border: 2px solid #e8e6bc;
+  border-radius: 14px;
+  padding: 36px 44px;
+  max-width: 420px; width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 22px rgba(0,0,0,.18);
+  color: #333;
+}
+.login-modal-content h2 {
+  margin: 0 0 12px;
+  font-family: 'Pacifico', cursive;
+  color: #4f6468;
+}
+.modal-login-btn {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 10px 26px;
+  background: #4f6468;
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background .2s ease;
+}
+.modal-login-btn:hover { background:#647d80; }
+.modal-close {
+  position:absolute; top:8px; right:12px;
+  background:none; border:none; font-size:28px;
+  color:#4f6468; cursor:pointer;
 }

@@ -1,6 +1,6 @@
 <template>
   <footer>
-    &copy; 2025 Relatives Remembered. All rights reserved. | Contact | Privacy Policy | Terms
+    &copy; 2025 Relatives Remembered. All rights reserved. | <router-link to="/about/contact">Contact</router-link> | Privacy Policy | Terms
   </footer>
 </template>
 

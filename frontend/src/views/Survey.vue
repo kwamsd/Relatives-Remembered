@@ -1,40 +1,40 @@
 <template>
   <main class="main-form">
-    <h1>Create a page in memory</h1>
+    <h1 class="form-h1">Create a page in memory</h1>
     <form class="form-page" @submit.prevent="handleSubmit" enctype="multipart/form-data">
       <div>
-        <label for="prenom">Firstname</label>
-        <input type="text" id="prenom" v-model="firstname" required>
+        <label class="form-label" for="prenom">Firstname</label>
+        <input class="form-input" type="text" id="prenom" v-model="firstname" required>
       </div>
       <div>
-        <label for="nom">Name</label>
-        <input type="text" id="nom" v-model="lastname" required>
+        <label class="form-label" for="nom">Name</label>
+        <input class="form-input" type="text" id="nom" v-model="lastname" required>
       </div>
       <div>
-        <label for="date_naissance">Birth Date</label>
-        <input type="date" id="date_naissance" v-model="birth">
+        <label class="form-label" for="date_naissance">Birth Date</label>
+        <input class="form-input" type="date" id="date_naissance" v-model="birth">
       </div>
       <div>
-        <label for="date_deces">Death date</label>
-        <input type="date" id="date_deces" v-model="death">
+        <label class="form-label" for="date_deces">Death date</label>
+        <input class="form-input" type="date" id="date_deces" v-model="death">
       </div>
       <div class="full-width">
-        <label for="biographie">Biography / Tribute</label>
-        <textarea id="biographie" v-model="biography" rows="5"></textarea>
+        <label class="form-label" for="biographie">Biography / Tribute</label>
+        <textarea class="form-textarea" id="biographie" v-model="biography" rows="5"></textarea>
       </div>
       <div>
-        <label for="photo">Upload your photo</label>
-        <input type="file" id="photo" @change="handleFile" accept="image/*">
+        <label class="form-label" for="photo">Upload your photo</label>
+        <input class="form-input" type="file" id="photo" @change="handleFile" accept="image/*">
       </div>
       <div>
-        <label for="theme">Page Theme</label>
-        <select id="theme" v-model="theme">
+        <label class="form-label" for="theme">Page Theme</label>
+        <select class="form-select" id="theme" v-model="theme">
           <option value="clair">Light</option>
           <option value="nature">Nature</option>
           <option value="sobre">Simple</option>
         </select>
       </div>
-      <button type="submit" :disabled="loading">Create tribute page</button>
+      <button class="form-button" type="submit" :disabled="loading">Create tribute page</button>
       <div v-if="success" class="success-msg">{{ success }}</div>
       <div v-if="error" class="error-msg">{{ error }}</div>
     </form>

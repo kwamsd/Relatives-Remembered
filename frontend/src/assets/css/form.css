@@ -4,7 +4,7 @@
     margin: auto;
 }
 
-h1 {
+.form-h1 {
     text-align: center;
     font-family: 'Pacifico', cursive;
     color: #789095;
@@ -27,15 +27,15 @@ h1 {
     flex-direction: column;
 }
 
-label {
+.form-label {
     font-weight: 600;
     margin-bottom: 8px;
     color: #4a4a4a;
 }
 
-input,
-textarea,
-select {
+.form-input,
+.form-textarea,
+.form-select {
     padding: 12px 14px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -43,7 +43,7 @@ select {
     font-family: inherit;
 }
 
-textarea {
+.form-textarea {
     resize: vertical;
     min-height: 100px;
 }
@@ -52,7 +52,7 @@ textarea {
     grid-column: span 2;
 }
 
-button {
+.form-button {
     grid-column: span 2;
     background-color: #789095;
     color: white;
@@ -64,6 +64,6 @@ button {
     transition: background-color 0.3s ease;
 }
 
-button:hover {
+.form-button:hover {
     background-color: #5d7478;
 }
