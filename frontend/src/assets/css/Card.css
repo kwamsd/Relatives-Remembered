@@ -38,67 +38,38 @@
   font-size: 1rem;
 }
 
-/* Section texte (50% restant de la carte) */
+/* ... haut du fichier inchangé ... */
+
+/* Section texte (50 %) */
 .card-info {
-  padding: 0.5rem 0.8rem;
+  padding: 0.6rem 0.9rem;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start; 
-  overflow: hidden;
-  text-align: justify;
-  background: #798F8F;
+  gap: 0.25rem;
+  background: #f0f4f4;      /* ← plus clair que #798F8F */
 }
 
-/* Nom affiché en plus gros */
+/* Nom */
 .card-name {
   margin: 0;
-  color: #000000;
-  font-size: 1.2rem;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  width: 100%;
+  font-size: 1.15rem;
+  color: #2b2b2b;           /* contraste lisible sur fond clair */
 }
 
-/* Dates (année de naissance – année de décès) */
+/* Dates */
 .card-dates {
-  margin: 0.2rem 0;
-  color: #798f8f;
-  font-weight: 500;
+  color: #556b6b;
+  font-weight: 600;
   font-size: 0.9rem;
 }
 
-/* Profession (facultatif) */
-.card-profession {
-  margin: 0.2rem 0;
-  color: #333;
-  font-size: 0.85rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 100%;
-}
-
-/* Lieu de naissance (facultatif) */
-.card-birthplace {
-  margin: 0.2rem 0;
-  color: #333;
-  font-size: 0.85rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 100%;
-}
-
-/* Known_for (facultatif) : limité à une ligne */
+/* Prof / birthplace / known_for – même teinte secondaire */
+.card-profession,
+.card-birthplace,
 .card-knownfor {
-  margin: 0.2rem 0;
-  color: #333;
-  font-size: 0.85rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 100%;
+  color: #444;
+  font-size: 0.83rem;
+  line-height: 1.25;
 }

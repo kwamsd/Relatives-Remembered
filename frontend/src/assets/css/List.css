@@ -80,3 +80,18 @@
   color: #fff;
   border-color: #556b6b;
 }
+
+/* lien autour de la carte : supprime souligné/bleu */
+.card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* quand on survole la carte → légère élévation */
+.card-link .card {
+  transition: transform .2s, box-shadow .2s;
+}
+.card-link:hover .card {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0,0,0,.1);
+}
