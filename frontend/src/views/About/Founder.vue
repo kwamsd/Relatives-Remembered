@@ -3,8 +3,8 @@
     <div class="about-subnav">
       <router-link to="/about"                >Overview</router-link>
       <router-link to="/about/who-we-are"     >Who We Are</router-link>
-      <router-link to="/about/contact" class="active">Contact</router-link>
-      <router-link to="/about/founder"        >Founder</router-link>
+      <router-link to="/about/contact" >Contact</router-link>
+      <router-link to="/about/founder"       class="active" >Founder</router-link>
     </div>
     <div class="bio-container">
       <div class="left-panel">

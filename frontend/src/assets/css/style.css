@@ -38,6 +38,17 @@ h1 {
   line-height: 1.1;
 }
 
+h3{
+    margin: 0;
+  font-family: 'Pacifico', cursive;
+  font-size: 1.6rem;
+  color: #f28211;
+  transition: 0.3s ease-in-out;
+}
+h3:hover{
+  color: #f49331;
+}
+
 /* button {
   border-radius: 8px;
   border: 1px solid transparent;

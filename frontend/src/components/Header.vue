@@ -1,7 +1,10 @@
 <template>
   <header class="app-header">
     <div class="header-content">
-      <nav class="navbar left">
+      <router-link to="/" class="site-logo-link">
+        <img :src="logo" alt="Site logo" class="site-logo" />
+      </router-link>
+      <nav class="navbar">
         <router-link to="/" class="nav-btn">HOME</router-link>
         <div class="dropdown">
           <button class="nav-btn">ABOUT&nbsp;US</button>
@@ -12,13 +15,6 @@
             <router-link to="/about/founder">Founder</router-link>
           </div>
         </div>
-      </nav>
-
-      <router-link to="/" class="site-logo-link">
-        <img :src="logo" alt="Site logo" class="site-logo" />
-      </router-link>
-
-      <nav class="navbar right">
         <router-link to="/list" class="nav-btn">LIST</router-link>
         <router-link to="/donation" class="nav-btn">DONATION</router-link>
 

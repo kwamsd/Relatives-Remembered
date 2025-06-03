@@ -8,6 +8,7 @@
   justify-content: space-around;
   padding: 40px 10px;
 }
+
 .honor-box,
 .search-box {
   background: #789095;
@@ -27,24 +28,24 @@
 }
 
 .honor-btn {
-    margin-top: 15px;
-    background-color: #e1e4d6;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 32px;
-    color: #333;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.06);
-    cursor: pointer;
-    transition: background 0.2s;
+  margin-top: 15px;
+  background-color: #e1e4d6;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 32px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
 }
 .honor-btn:hover {
-    background-color: #cfd2be;
+  color: #f28211;
 }
 
 .search-box {
@@ -69,7 +70,6 @@
   border: none;
   font-size: 20px;
 }
-
 
 .extra-section,
 .features-section,
@@ -142,26 +142,24 @@
 }
 
 .cta-btn {
-    background-color: #e1e4d6;
-    color: #333;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.2s;
+  background-color: #e1e4d6;
+  color: #333;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
 }
-
 .cta-btn:hover {
-    background-color: #cfd2be;
+  background-color: #cfd2be;
 }
-
 
 /* ==============================================
    NEW / UPDATED RULES START HERE
    ============================================== */
 
-/* 1. Free‐creation notice styling */
+/* 1. Free-creation notice */
 .free-notice {
   background-color: #e8e6bc;
   padding: 5px;
@@ -171,138 +169,145 @@
   font-size: 1.4rem;
 }
 
-/* === GALERIE (version simplifiée) === */
+/* ========== SECTION 4 – CAROUSEL & ANECDOTES ========== */
 
-/* Fenêtre masquant tout sauf un seul card à la fois */
+/* wrapper général */
 .gallery-wrapper {
-  /* margin: 0 auto 40px; */
-  /*width: 220px;     200px (card) + 20px (écart) */
-  overflow: hidden;
-  background: #798f8f;
-  padding: 20px;
-  border-top: 1px solid #E1E1C5 ;
-}
-
-/* Piste (track) déroulante */
-.gallery-track {
   display: flex;
-  gap: 20px;               /* même espace qu’en JS (CARD_WIDTH = 220 : 200+20) */
-  transition: transform 0.3s ease-in-out;
-}
-
-/* Style de base pour chaque carte (inactive) */
-.gallery-card {
-  flex: 0 0 200px;         /* largeur fixe de 200px */
-  text-align: center;
-  font-family: 'Pacifico', cursive;
-  padding: 10px;
-  background: #b7b79f ;
-  opacity: 0.5;
-  border-radius: 5px;
-  box-sizing: border-box;
-}
-
-/* Image à l’intérieur de la card */
-.gallery-card img {
-  width: 100%;
-  border-radius: 5px;
-}
-
-/* Carte active (fond différent + pleine opacité) */
-.gallery-card.active {
-  background: #ffffec ;
-  opacity: 1;
-}
-
-/* Flèches de navigation */
-.gallery-nav {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.gallery-nav button {
-  background: #f28211;
-  border: none;
-  width: 50px;
-  height:50px;
-  font-size: 24px;
-  font-weight: 700;
-  margin: 0 10px;
-  cursor: pointer;
-  padding: 5px 12px;
-  border-radius: 100%;
-  color: white;
-  transition: transform .2s ease, background .2s ease;
-}
-.gallery-nav button:hover{
-    background:#f7a95c; 
-    transform: translateY(-2px);
-}
-/* ──────────────────────────────────────────────
-   Wrapper : on passe en flex pour placer le texte à gauche,
-   le carrousel à droite
-   ────────────────────────────────────────────── */
-.gallery-wrapper {
-  display: flex;               /* ← ajout */
-  gap: 30px;                   /* espace entre texte & galerie */
-  align-items: center;
-  flex-wrap: wrap;             /* pile en colonne sur mobile */
-  overflow: hidden;
+  flex-direction: column;
+  gap: 18px;
   background: #798f8f;
   padding: 20px;
   border-top: 1px solid #E1E1C5;
 }
 
-/* bloc texte */
-.gallery-info {
-  color: #fff;
-  max-width: 260px;
-  flex: 0 0 260px;             /* largeur fixe desktop */
-}
-.gallery-info h3 {
-  margin: 0 0 8px;
+/* titre (Latest Tributes / Anecdotes) */
+.gallery-title {
+  margin: 0;
   font-family: 'Pacifico', cursive;
   font-size: 1.6rem;
-}
-.gallery-info p {
-  margin: 0;
-  line-height: 1.45;
-  font-style: italic;
-  font-size: .95rem;
-}
-
-/* carrousel conserve son style existant */
-.gallery-container { flex: 1 1 auto; }
-
-/* End of new/updated section */
-
-/* ──────────────────────────────────────────────
-   PLUS (“Honor”) button – fresh look
-   ────────────────────────────────────────────── */
-.honor-btn {
-  margin-top: 18px;
-  width: 60px;              /* larger circle */
-  height: 60px;
-  border-radius: 50%;
-  font-size: 42px;
-  font-weight: 700;
-  background: #f28211;
   color: #fff;
-  border: none;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 8px rgba(0,0,0,.12);
-  cursor: pointer;
-  transition: transform .2s ease, background .2s ease;
 }
-.honor-btn:hover       { background:#f7a95c; transform: translateY(-2px); }
-.honor-btn:active      { transform: scale(.96); }
+
+/* onglets */
+.gallery-tabs {
+  display: flex;
+  gap: 30px;
+}
+.gallery-tabs button {
+  background: none;
+  border: none;
+  font-size: 1.05rem;
+  cursor: pointer;
+  color: #fff;
+  position: relative;
+  padding: 4px 2px 6px;
+  transition: opacity .2s;
+}
+.gallery-tabs button:hover { opacity: .8; }
+.gallery-tabs button.active {
+  font-weight: 700;
+}
+.gallery-tabs button.active::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%; height: 2px;
+  background: #fff;
+}
+
+/* BODY : flèches + piste de cartes (ou anecdotes) alignés sur la même ligne */
+.gallery-body {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* flèches de navigation */
+.nav-btn-home {
+  background: #f28211;
+  border: none;
+  width: 48px;
+  height: 48px;
+  font-size: 24px;
+  align-items: center;
+  font-weight: 700;
+  border-radius: none;
+  color: #fff;
+  cursor: pointer;
+  transition: transform .2s, background .2s;
+}
+/* .nav-btn-home:hover  { background:#ffffff; } */
+.nav-btn-home:active { transform: scale(1.2); }
+
+/* conteneur du carrousel */
+.gallery-container {
+  overflow: hidden;
+  /* border: 2px solid #E1E1C5; */
+  border-radius: 8px;
+  padding: 12px 0;
+  max-width: 100%;
+}
+
+/* piste déroulante */
+.gallery-track {
+  display: flex;
+  gap: 20px;
+  flex-wrap: nowrap;
+  transition: transform .3s ease-in-out;
+}
+
+/* carte tribute */
+.gallery-card {
+  flex: 0 0 200px;
+  text-align: center;
+  font-family: 'Pacifico', cursive;
+  padding: 10px;
+  background: #b7b79f;
+  opacity: .5;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin: 5px;
+}
+.gallery-card.active {
+  background:#ffffec;
+  opacity: 1;
+}
+.gallery-card img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+/* anecdotes */
+.anecdotes-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.anecdote-card {
+  flex: 0 0 200px;
+  background:#ffffec;
+  border: 1px solid #E1E1C5;
+  border-radius: 6px;
+  padding: 14px 12px;
+  box-sizing: border-box;
+  color:#333;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.anecdote-text   { margin:0 0 10px; font-style:italic; }
+.anecdote-author { margin:0; font-weight:600; text-align:right; }
 
 /* ──────────────────────────────────────────────
    Modal (login prompt)
    ────────────────────────────────────────────── */
 .login-modal {
-  position: fixed; inset: 0;
-  display: flex; align-items: center; justify-content: center;
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   backdrop-filter: blur(3px);
   background: rgba(0,0,0,.35);
   z-index: 2000;
@@ -313,7 +318,8 @@
   border: 2px solid #e8e6bc;
   border-radius: 14px;
   padding: 36px 44px;
-  max-width: 420px; width: 90%;
+  max-width: 420px;
+  width: 90%;
   text-align: center;
   box-shadow: 0 8px 22px rgba(0,0,0,.18);
   color: #333;
@@ -335,7 +341,12 @@
 }
 .modal-login-btn:hover { background:#647d80; }
 .modal-close {
-  position:absolute; top:8px; right:12px;
-  background:none; border:none; font-size:28px;
-  color:#4f6468; cursor:pointer;
+  position:absolute;
+  top:8px;
+  right:12px;
+  background:none;
+  border:none;
+  font-size:28px;
+  color:#4f6468;
+  cursor:pointer;
 }
