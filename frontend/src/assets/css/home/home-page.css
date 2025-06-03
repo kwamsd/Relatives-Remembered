@@ -3,11 +3,19 @@
    (Copied from your original file.)
    ================================ */
 
+.free-notice {
+  color: #789095;
+  padding: 2px;
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
 .honor-section {
   display: flex;
   justify-content: space-around;
   padding: 40px 10px;
-  background: #eaeae8 url('../../images/background.png');
 }
 .honor-box,
 .search-box {
@@ -76,7 +84,7 @@
 .features-section,
 .testimonial-section,
 .cta-section {
-  padding: 40px 20px;
+  padding: 50px 20px;
   text-align: center;
 }
 
@@ -86,7 +94,6 @@
 }
 .cta-section,
 .features-section {
-  background: #f9f9f7c3 url('../images/background.png');
 }
 
 .extra-section h2,
@@ -145,4 +152,46 @@
 
 .cta-btn:hover {
     background-color: #cfd2be;
+}
+
+.gallery-wrapper {
+  width: 100%;
+  max-width: 900px;
+  margin: 40px auto;
+  overflow: hidden;
+  background: #f9f9f7;
+  border: 5px solid #789095;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(120,144,149,0.07);
+}
+
+.gallery-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.gallery-track {
+  display: flex;
+  transition: transform 0.4s cubic-bezier(.4,0,.2,1);
+  will-change: transform;
+}
+
+.gallery-card {
+  flex: 0 0 220px; /* même valeur que CARD_WIDTH */
+  margin: 20px 10px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(120,144,149,0.06);
+  text-align: center;
+  padding: 16px 0;
+  transition: box-shadow 0.2s;
+}
+
+.gallery-card img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 12px;
 }

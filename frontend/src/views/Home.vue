@@ -20,7 +20,7 @@
   <section class="honor-section">
     <div class="honor-box">
       <span>HONOR THE MEMORY OF A LOVED ONE</span>
-      <button><a href="/survey">+</a></button>
+      <a href="/survey" class="honor-btn">+</a>
     </div>
     <div class="search-box">
       <p>REMEMBER SOMEONE SPECIAL</p>
