@@ -32,11 +32,22 @@
 
     <!-- Conteneur en grille -->
     <div class="list-container">
-      <router-link v-for="person in paginatedList" :key="person.id" :to="`/dead-people/${person.id}`" class="card-link">
-        <Card :firstname="person.firstname" :lastname="person.lastname" :birth="person.birth" :death="person.death"
-          :profession="person.profession" :birthplace="person.birthplace" :known_for="person.known_for"
-          :photo="person.photo" />
-      </router-link>
+    <router-link
+      v-for="person in paginatedList"
+      :key="person.id"
+      :to="`/dead-people/${person.id}`"
+      class="card-link"
+    >
+      <Card
+        :firstname="person.firstname"
+        :lastname="person.lastname"
+        :birth="person.birth"
+        :death="person.death"
+        :profession="person.job"           
+        :birthplace="person.nationality"   
+        :photo="person.image_url"          
+      />
+    </router-link>
     </div>
 
 

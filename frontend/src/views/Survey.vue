@@ -3,36 +3,53 @@
     <h1 class="form-h1">Create a page in memory</h1>
     <form class="form-page" @submit.prevent="handleSubmit" enctype="multipart/form-data">
       <div>
-        <label class="form-label" for="prenom">Firstname</label>
-        <input class="form-input" type="text" id="prenom" v-model="firstname" required>
+        <label class="form-label" for="firstname">Firstname</label>
+        <input class="form-input" type="text" id="firstname" v-model="firstname" required>
       </div>
       <div>
-        <label class="form-label" for="nom">Name</label>
-        <input class="form-input" type="text" id="nom" v-model="lastname" required>
+        <label class="form-label" for="lastname">Name</label>
+        <input class="form-input" type="text" id="lastname" v-model="lastname" required>
       </div>
       <div>
-        <label class="form-label" for="date_naissance">Birth Date</label>
-        <input class="form-input" type="date" id="date_naissance" v-model="birth">
+        <label class="form-label" for="second_name">Second Name</label>
+        <input class="form-input" type="text" id="second_name" v-model="second_name">
       </div>
       <div>
-        <label class="form-label" for="date_deces">Death date</label>
-        <input class="form-input" type="date" id="date_deces" v-model="death">
+        <label class="form-label" for="third_name">Third Name</label>
+        <input class="form-input" type="text" id="third_name" v-model="third_name">
+      </div>
+      <div>
+        <label class="form-label" for="birth">Birth Date</label>
+        <input class="form-input" type="date" id="birth" v-model="birth">
+      </div>
+      <div>
+        <label class="form-label" for="death">Death Date</label>
+        <input class="form-input" type="date" id="death" v-model="death">
+      </div>
+      <div>
+        <label class="form-label" for="job">Job</label>
+        <input class="form-input" type="text" id="job" v-model="job">
+      </div>
+      <div>
+        <label class="form-label" for="nationality">Nationality</label>
+        <input class="form-input" type="text" id="nationality" v-model="nationality">
+      </div>
+      <div>
+        <label class="form-label" for="gender">Gender</label>
+        <select class="form-select" id="gender" v-model="gender">
+          <option value="">Select</option>
+          <option value="M">Male</option>
+          <option value="F">Female</option>
+          <option value="O">Other</option>
+        </select>
       </div>
       <div class="full-width">
-        <label class="form-label" for="biographie">Biography / Tribute</label>
-        <textarea class="form-textarea" id="biographie" v-model="biography" rows="5"></textarea>
+        <label class="form-label" for="description">Biography / Tribute</label>
+        <textarea class="form-textarea" id="description" v-model="description" rows="5"></textarea>
       </div>
       <div>
-        <label class="form-label" for="photo">Upload your photo</label>
+        <label class="form-label" for="photo">Upload a photo</label>
         <input class="form-input" type="file" id="photo" @change="handleFile" accept="image/*">
-      </div>
-      <div>
-        <label class="form-label" for="theme">Page Theme</label>
-        <select class="form-select" id="theme" v-model="theme">
-          <option value="clair">Light</option>
-          <option value="nature">Nature</option>
-          <option value="sobre">Simple</option>
-        </select>
       </div>
       <button class="form-button" type="submit" :disabled="loading">Create tribute page</button>
       <div v-if="success" class="success-msg">{{ success }}</div>
@@ -49,10 +66,14 @@ import '../assets/css/form.css'
 
 const firstname = ref('')
 const lastname = ref('')
+const second_name = ref('')
+const third_name = ref('')
 const birth = ref('')
 const death = ref('')
-const biography = ref('')
-const theme = ref('clair')
+const job = ref('')
+const nationality = ref('')
+const gender = ref('')
+const description = ref('')
 const file = ref(null)
 const loading = ref(false)
 const success = ref('')
@@ -78,10 +99,14 @@ async function handleSubmit() {
     const formData = new FormData()
     formData.append('firstname', firstname.value)
     formData.append('lastname', lastname.value)
+    formData.append('second_name', second_name.value)
+    formData.append('third_name', third_name.value)
     formData.append('birth', birth.value)
     formData.append('death', death.value)
-    formData.append('biography', biography.value)
-    formData.append('theme', theme.value)
+    formData.append('job', job.value)
+    formData.append('nationality', nationality.value)
+    formData.append('gender', gender.value)
+    formData.append('description', description.value)
     if (file.value) {
       formData.append('photo', file.value)
     }
@@ -96,13 +121,9 @@ async function handleSubmit() {
       const data = await res.json()
       error.value = data.error || 'Erreur lors de la création'
     } else {
+      const created = await res.json()
       success.value = 'Page créée avec succès !'
-      // Optionnel : redirige vers la page du profil créé
-      // const created = await res.json()
-      // router.push(`/dead-people/${created.id}`)
-      // Ou reset le formulaire
-      firstname.value = lastname.value = birth.value = death.value = biography.value = ''
-      file.value = null
+      router.push(`/dead-people/${created.id}`)
     }
   } catch (e) {
     error.value = 'Erreur réseau'

@@ -34,7 +34,7 @@
 .list-container {
   flex: 1 0 auto; /* Prend toute la hauteur dispo */
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(2, 1fr); /* ← exactement 2 colonnes */
   gap: 3.2rem;
   justify-items: center;
   margin-bottom: 1rem;

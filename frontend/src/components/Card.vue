@@ -40,9 +40,8 @@ defineProps({
   lastname:    String,
   birth:       String,
   death:       String,
-  profession:  String,
-  birthplace:  String,
-  known_for:   String,
+  profession:  String,    // va recevoir job
+  birthplace:  String,    // va recevoir nationality
   photo:       String
 })
 </script>

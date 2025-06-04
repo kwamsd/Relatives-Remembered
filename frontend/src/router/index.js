@@ -39,7 +39,11 @@ const routes = [
       { path:'infos',         component:UserInfo,  meta:{title:'My Info | Relatives Remembered'} },
       { path:'pages-created', component:MesDefunts,meta:{title:'My Memorials | Relatives Remembered'} }
     ]
-  }
+  },
+  {path: '/dead-people/:id', component: Dead, meta: { title: 'Tribute | Relatives Remembered' }},
+  {path: '/edit-page/:id', component: () => 
+    import('../views/EditPage.vue'), meta: { title: 'Modifier la page | Relatives Remembered' }}
+
 ]
 
 const router = createRouter({ history:createWebHistory(), routes })

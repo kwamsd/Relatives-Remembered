@@ -1,0 +1,188 @@
+.edit-main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  width: 100vw;
+  margin: 0;
+  background: url('../images/paysage.png') no-repeat center center/cover;
+  color: white;
+  box-sizing: border-box;
+}
+
+.edit-left-section,
+.edit-right-section {
+  flex: 1;
+  min-width: 300px;
+  max-width: 500px;
+  margin: 20px;
+}
+
+/* Photo */
+.edit-photo-frame {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.edit-photo-frame img,
+.edit-photo-placeholder {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #0f3b4b;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+}
+.edit-photo-placeholder {
+  background: #eee;
+  color: #888;
+  font-style: italic;
+}
+.edit-label {
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #ffd700;
+}
+.edit-input-file {
+  margin: 8px 0 0 0;
+  background: transparent;
+  color: #fff;
+}
+
+/* Carte identité */
+.edit-identity-card {
+  background-color: #0f3b4b71;
+  border: 3px solid #0f3b4b;
+  padding: 20px;
+  text-align: center;
+  margin-top: -10px;
+  border-radius: 10px;
+}
+.edit-name-input {
+  display: block;
+  width: 80%;
+  margin: 0.3rem auto;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #ffd700;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-align: center;
+  outline: none;
+  padding: 4px 0;
+}
+.edit-dates {
+  margin: 8px 0 0 0;
+  color: #ffd700;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* Détails */
+.edit-details-box {
+  background-color: rgba(0, 0, 0, 0.28);
+  padding: 20px;
+  margin-top: 30px;
+  font-size: 14px;
+  line-height: 1.5;
+  border-radius: 8px;
+}
+.edit-detail-input,
+.edit-detail-select {
+  width: 100%;
+  margin: 0.4rem 0;
+  background: #1a1a1a;
+  border: 1px solid #355c7d;
+  color: #fff;
+  border-radius: 6px;
+  padding: 7px 10px;
+  font-size: 1rem;
+}
+.edit-detail-select {
+  background: #2b2b2b;
+}
+
+/* Formulaire */
+.edit-form-box {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 25px 20px;
+  margin-bottom: 20px;
+  font-size: 15px;
+  border-radius: 10px;
+}
+.edit-form-box label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 600;
+  color: #ffd700;
+}
+.edit-date-input,
+.edit-desc-textarea {
+  width: 100%;
+  background: #222;
+  color: #fff;
+  border: 1px solid #355c7d;
+  border-radius: 6px;
+  padding: 8px;
+  margin-bottom: 0.7rem;
+  font-size: 1rem;
+}
+.edit-desc-textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* Personnalisation couleurs */
+.edit-bg-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0;
+}
+.edit-color-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  margin-left: 6px;
+  cursor: pointer;
+  outline: none;
+  transition: border 0.2s;
+}
+.edit-color-btn.selected,
+.edit-color-btn:focus {
+  border: 3px solid #ffd700;
+}
+
+/* Bouton enregistrer */
+.edit-submit-btn {
+  margin-top: 1.5rem;
+  padding: 0.7rem 1.5rem;
+  background: #ffd700;
+  color: #0f3b4b;
+  border: none;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background 0.2s;
+}
+.edit-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.edit-success-msg {
+  margin-top: 1rem;
+  color: #4caf50;
+}
+.edit-error-msg {
+  margin-top: 1rem;
+  color: #f44336;
+}

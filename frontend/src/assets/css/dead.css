@@ -2,10 +2,9 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: flex-start; /* ou center si tu veux centrer verticalement */
     /* padding: 60px 20px; */
     background: url('../images/paysage.png') no-repeat center center/cover;
-    width: 100%;
-    height: 100%;
     color: white;
 }
 
@@ -30,7 +29,7 @@
 .identity-card {
     background-color: #0f3b4b71;
     border: 3px solid #0f3b4b;
-    padding: 20px;
+    padding: 40px;
     text-align: center;
     margin-top: -10px;
 }
@@ -78,4 +77,82 @@
 .anecdotes-box::-webkit-scrollbar-thumb {
     background: #ccc;
     border-radius: 10px;
+}
+
+.submit-anecdote-box {
+    background: rgba(15, 59, 75, 0.8);
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+
+.submit-anecdote-box h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.submit-anecdote-box input,
+.submit-anecdote-box textarea {
+    width: 90%;
+    margin-bottom: 10px;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    color: #ffffff;
+}
+
+.submit-anecdote-box button {
+    background: #789095;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.submit-anecdote-box button:disabled {
+    opacity: 1;
+    cursor: not-allowed;
+}
+
+.success-msg, .error-msg {
+    margin-top: 8px;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.success-msg {
+    background: #d4edda;
+    color: #155724;
+}
+
+.error-msg {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.edit-page-btn {
+    display: block;
+    margin: 16px auto 0 auto;
+    padding: 8px 18px;
+    background: #5f6899;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.edit-page-btn:hover {
+    background: #789095;
 }

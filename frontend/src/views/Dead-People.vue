@@ -1,9 +1,5 @@
 <template>
-  <main
-    class="dead-main"
-    v-if="profile"
-    :style="backgroundStyle"
-  >
+  <main class="dead-main" v-if="profile" :style="backgroundStyle">
     <section class="left-section">
       <div class="photo-frame">
         <img
@@ -18,16 +14,21 @@
           <span style="font-weight: 300; font-size: 16px;">{{ profile.firstname }}</span>
           <strong>{{ profile.lastname }}</strong>
         </p>
-        <p>{{ formatYear(profile.Birth) }} — {{ formatYear(profile.death) }}</p>
+        <p>{{ formatYear(profile.birth) }} — {{ formatYear(profile.death) }}</p>
       </div>
       <div class="details-box">
-        <p><strong>Full Name:</strong> {{ profile.firstname }} {{ profile.lastname }}</p>
-        <p v-if="profile.profession"><strong>Profession:</strong> {{ profile.profession }}</p>
-        <p v-if="profile.birthplace"><strong>Birthplace:</strong> {{ profile.birthplace }}</p>
-        <p v-if="profile.known_for"><strong>Known For:</strong> {{ profile.known_for }}</p>
-        <p v-if="profile.family"><strong>Family:</strong> {{ profile.family }}</p>
-        <p v-if="profile.legacy"><strong>Legacy:</strong> {{ profile.legacy }}</p>
+        <p><strong>Full Name:</strong> {{ profile.firstname }} {{ profile.second_name }} {{ profile.third_name }} {{ profile.lastname }}</p>
+        <p v-if="profile.job"><strong>Job:</strong> {{ profile.job }}</p>
+        <p v-if="profile.nationality"><strong>Nationality:</strong> {{ profile.nationality }}</p>
+        <p v-if="profile.gender"><strong>Gender:</strong> {{ profile.gender }}</p>
       </div>
+      <button
+        v-if="isOwner"
+        class="edit-page-btn"
+        @click="router.push(`/edit-page/${profile.id}`)"
+      >
+        Edit the page
+      </button>
     </section>
 
     <section class="right-section">
@@ -72,12 +73,14 @@
 
 <script setup>
 import { ref, onMounted, computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
+import { authService as $auth } from '../services/authService.js'
 import '../assets/css/dead.css'
 
-const apiUrl = 'http://localhost:3000' // adapte si besoin
+const apiUrl = 'http://localhost:3000'
 
 const route = useRoute()
+const router = useRouter()
 const profile = ref(null)
 const anecdotes = ref([])
 const anecdoteFirstname = ref('')
@@ -86,6 +89,10 @@ const anecdoteSuccess = ref('')
 const anecdoteError = ref('')
 const anecdoteLoading = ref(false)
 const background = ref(null)
+
+const isOwner = computed(() =>
+  $auth.state.user && profile.value && $auth.state.user.id === profile.value.id_user
+)
 
 function formatYear(dateStr) {
   if (!dateStr) return ''
@@ -131,7 +138,6 @@ async function submitAnecdote() {
       anecdoteSuccess.value = 'Anecdote submitted! (pending approval)'
       anecdoteFirstname.value = ''
       anecdoteContent.value = ''
-      // Optionnel : rafraîchir la liste après validation réelle
     }
   } catch (e) {
     anecdoteError.value = 'Network error'
@@ -149,12 +155,10 @@ async function fetchBackground() {
   }
 }
 
-// Style dynamique pour le background
 const backgroundStyle = computed(() => {
   if (!background.value) return {}
   let style = {}
   if (background.value.background_url) {
-    // Si le chemin n'est pas absolu, préfixe avec l'apiUrl
     const url = background.value.background_url.startsWith('http')
       ? background.value.background_url
       : apiUrl + background.value.background_url
@@ -166,7 +170,6 @@ const backgroundStyle = computed(() => {
     style.backgroundColor = background.value.color_main
   }
   if (background.value.color_overlay) {
-    // Exemple d'overlay semi-transparent
     style.boxShadow = `inset 0 0 0 100vw ${background.value.color_overlay}80`
   }
   return style
