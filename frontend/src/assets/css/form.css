@@ -67,3 +67,8 @@
 .form-button:hover {
     background-color: #5d7478;
 }
+
+.color-field { display: flex; align-items: center; gap: .5rem; }
+.color-field .swatch {
+  width: 24px; height: 24px; border: 1px solid #aaa; border-radius: 4px;
+}

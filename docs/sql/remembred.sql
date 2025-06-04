@@ -57,11 +57,3 @@ CREATE TABLE anecdotes (
     date_submitted TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Table: donations (soutiens financiers facultatifs)
-CREATE TABLE donations (
-    id SERIAL PRIMARY KEY,
-    id_template INTEGER REFERENCES templates(id) ON DELETE CASCADE,
-    amount DECIMAL(10,2) NOT NULL,
-    donor_name VARCHAR(255),
-    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);

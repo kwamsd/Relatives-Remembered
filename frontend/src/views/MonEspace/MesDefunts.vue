@@ -31,7 +31,7 @@ onMounted(async () => {
 
     <ul v-else class="defunts-list">
       <li v-for="d in defunts" :key="d.id">
-        <router-link :to="`/deceased/${d.id}`">{{ d.firstname }} {{ d.lastname }}</router-link>
+        <router-link :to="`/template/${d.id}`">{{ d.firstname }} {{ d.lastname }}</router-link>
       </li>
     </ul>
   </div>

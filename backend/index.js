@@ -2,6 +2,10 @@
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');        // ← import
+const fs = require('fs');
+if (!fs.existsSync('uploads')) {
+  fs.mkdirSync('uploads', { recursive: true });
+}
 const app = express();
 require('dotenv').config();
 

@@ -1,5 +1,5 @@
 /* ----------------------------------------
-   Styles pour la barre de recherche & filtres
+   Barre de recherche & filtres
 ---------------------------------------- */
 .controls {
   display: flex;
@@ -32,27 +32,25 @@
    Grille des cartes
 ---------------------------------------- */
 .list-container {
-  flex: 1 0 auto; /* Prend toute la hauteur dispo */
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* ← exactement 2 colonnes */
-  gap: 3.2rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 4 cartes max ≈ 250 px */
+  gap: 2rem;
   justify-items: center;
   margin-bottom: 1rem;
 }
 
-footer {
-  flex-shrink: 0;
-}
-
 @media (min-width: 900px) {
+  .list-container {
+    grid-template-columns: repeat(4, 1fr); /* 4 colonnes fixes sur grands écrans */
+  }
   #list-page {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
   }
 }
 
 /* ----------------------------------------
-   Styles pour la pagination
+   Pagination
 ---------------------------------------- */
 .pagination {
   display: flex;
@@ -71,32 +69,57 @@ footer {
   transition: background-color 0.2s, color 0.2s;
 }
 
-.page-btn:hover:not(:disabled) {
-  background-color: #e1e1e1;
-}
+.page-btn:hover:not(:disabled) { background-color: #e1e1e1; }
+.page-btn:disabled            { opacity: 0.5; cursor: not-allowed; }
+.page-btn.active              { background-color: #798f8f; color: #fff; border-color: #556b6b; }
 
-.page-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.page-btn.active {
-  background-color: #798f8f;
-  color: #fff;
-  border-color: #556b6b;
-}
-
-/* lien autour de la carte : supprime souligné/bleu */
+/* ----------------------------------------
+   Lien autour de la carte
+---------------------------------------- */
 .card-link {
   text-decoration: none;
   color: inherit;
-}
-
-/* quand on survole la carte → légère élévation */
-.card-link .card {
   transition: transform .2s, box-shadow .2s;
 }
-.card-link:hover .card {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 16px rgba(0,0,0,.1);
+
+.card-link:hover { transform: translateY(-4px); box-shadow: 0 6px 16px rgba(0,0,0,.1); }
+
+/* ----------------------------------------
+   Carte (format réduit)
+---------------------------------------- */
+.card {
+  width: 200px;
+  height: 340px;
+  background: #f9f9f9;
+  border: 1px solid #798f8f;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.07);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Photo (haut de la carte) */
+.card-photo { width:100%; height:48%; position:relative; }
+.card-photo img,
+.card-photo-placeholder {
+  width:100%; height:100%; object-fit:cover;
+  display:flex; align-items:center; justify-content:center;
+  background:#fff; color:#999;
+}
+
+/* Infos (bas de la carte) */
+.card-info {
+  padding:0.5rem 0.8rem;
+  display:flex; flex-direction:column; gap:0.3rem;
+  background:#f0f4f4;
+}
+.card-info p{ margin:2px; }
+
+.card-name   { font-size:1.05rem; color:#2b2b2b; margin:0; }
+.card-dates  { color:#556b6b; font-weight:600; font-size:0.85rem; }
+.card-profession,
+.card-birthplace,
+.card-knownfor {
+  color:#444; font-size:0.78rem; line-height:1.2;
 }

@@ -9,7 +9,8 @@
         />
         <div v-else class="photo-placeholder">No Photo</div>
       </div>
-      <div class="identity-card">
+      <div class="identity-card"
+           :style="{ backgroundColor: mainColor38, borderColor: mainColor }">
         <p>
           <span style="font-weight: 300; font-size: 16px;">{{ profile.firstname }}</span>
           <strong>{{ profile.lastname }}</strong>
@@ -36,7 +37,7 @@
         <p>{{ profile.description }}</p>
       </div>
 
-      <div class="anecdotes-box">
+      <div class="anecdotes-box" :style="{ backgroundColor: mainColor }">
         <h3>Anecdotes</h3>
         <ul v-if="anecdotes.length">
           <li v-for="anecdote in anecdotes" :key="anecdote.id">
@@ -46,7 +47,7 @@
         <div v-else class="no-anecdote">No anecdotes yet.</div>
       </div>
 
-      <div class="submit-anecdote-box">
+      <div class="submit-anecdote-box" :style="{ background: mainColor }">
         <h4>Share your anecdote</h4>
         <form @submit.prevent="submitAnecdote">
           <input
@@ -89,6 +90,15 @@ const anecdoteSuccess = ref('')
 const anecdoteError = ref('')
 const anecdoteLoading = ref(false)
 const background = ref(null)
+
+ // ---------- COULEURS DYNAMIQUES ----------
+const mainColor = computed(() =>
+  background.value?.color_main || '#0f3b4b'
+)
+// 38 % d’opacité : #RRGGBB + 61
+const mainColor38 = computed(() =>
+  mainColor.value.length === 7 ? `${mainColor.value}61` : mainColor.value
+)
 
 const isOwner = computed(() =>
   $auth.state.user && profile.value && $auth.state.user.id === profile.value.id_user
@@ -166,9 +176,7 @@ const backgroundStyle = computed(() => {
     style.backgroundSize = 'cover'
     style.backgroundPosition = 'center'
   }
-  if (background.value.color_main) {
-    style.backgroundColor = background.value.color_main
-  }
+  if (mainColor.value) style.backgroundColor = mainColor.value
   if (background.value.color_overlay) {
     style.boxShadow = `inset 0 0 0 100vw ${background.value.color_overlay}80`
   }

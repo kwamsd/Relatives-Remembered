@@ -6,7 +6,7 @@
     </div>
   </section>
 
-  <!-- 2. Free‑creation notice -->
+  <!-- 2. Free-creation notice -->
   <section class="free-notice">
     <p>There is no fee to create a tribute page—celebrate your loved one at no cost</p>
   </section>
@@ -17,15 +17,16 @@
       <span>HONOUR THE MEMORY OF A LOVED ONE</span>
       <button class="honor-btn" @click="handleHonor">+</button>
     </div>
+
     <div class="search-box">
       <p>REMEMBER SOMEONE SPECIAL</p>
-      <input type="text" placeholder="First Name" />
-      <input type="text" placeholder="Last Name" />
-      <button>🔍</button>
+      <input v-model="searchFirst" type="text" placeholder="First Name" />
+      <input v-model="searchLast"  type="text" placeholder="Last Name" />
+      <button @click="handleSearch">🔍</button>
     </div>
   </section>
 
-  <!-- 4. Gallery / Anecdotes (shown only if data) -->
+  <!-- 4. Gallery / Anecdotes -->
   <section v-if="hasGalleryData" class="gallery-wrapper">
     <!-- Titles -->
     <h3 class="gallery-title">{{ activeTab === 'tributes' ? 'Latest Tributes' : 'Anecdotes' }}</h3>
@@ -37,26 +38,29 @@
     </div>
 
     <!-- Body -->
+    <!-- ---------- TRIBUTES CAROUSEL ---------- -->
     <div v-if="activeTab === 'tributes'" class="gallery-body">
       <button class="nav-btn-home" @click="prev"><i class="fa-solid fa-arrow-left"></i></button>
 
       <div class="gallery-container">
         <div class="gallery-track" :style="trackStyle">
-          <div
+          <router-link
             v-for="(card, index) in cards"
-            :key="index"
+            :key="card.id"
+            :to="`/template/${card.id}`"
             class="gallery-card"
             :class="{ active: index === activeIndex }"
           >
             <img :src="card.img" alt="Tribute portrait" />
             <p>{{ card.lastName }} {{ card.firstName }}</p>
-          </div>
+          </router-link>
         </div>
       </div>
 
       <button class="nav-btn-home" @click="next"><i class="fa-solid fa-arrow-right"></i></button>
     </div>
 
+    <!-- ---------- ANECDOTES LIST ---------- -->
     <div v-else class="anecdotes-container">
       <div v-for="(anec, i) in anecdotes" :key="i" class="anecdote-card">
         <p class="anecdote-text">"{{ anec.text }}"</p>
@@ -123,53 +127,77 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { authService } from '../services/authService'
-import imgPP from '../assets/images/photo-pp.jpg'
+import placeholderImg from '../assets/images/photo-pp.jpg'
 
-const router = useRouter()
+/* ------------- Auth / CTA ------------- */
 const { state } = authService
-const isLogged = computed(() => !!state.user)
-
+const isLogged        = computed(() => !!state.user)
+const router          = useRouter()
 const showLoginPrompt = ref(false)
-function handleHonor() {
-  if (isLogged.value) router.push('/survey')
-  else showLoginPrompt.value = true
-}
-function handleStartNow() {
-  if (isLogged.value) router.push('/survey')
-  else showLoginPrompt.value = true
+
+function handleHonor()      { isLogged.value ? router.push('/survey') : showLoginPrompt.value = true }
+function handleStartNow()   { handleHonor() }   // même logique
+function handleSearch () {
+  if (!searchFirst.value && !searchLast.value) return
+  router.push({ path: '/list', query:{ first:searchFirst.value, last:searchLast.value }})
 }
 
-// Carousel logic
-const CARD_WIDTH = 220
-const cards = ref([
-  { firstName: 'Prénom1', lastName: 'Nom1', img: imgPP },
-  { firstName: 'Prénom2', lastName: 'Nom2', img: imgPP },
-  { firstName: 'Prénom3', lastName: 'Nom3', img: imgPP },
-  { firstName: 'Prénom4', lastName: 'Nom4', img: imgPP },
-  { firstName: 'Prénom5', lastName: 'Nom5', img: imgPP },
-  { firstName: 'Prénom6', lastName: 'Nom6', img: imgPP },
-])
-const anecdotes = ref([
-  { firstName: 'Marie', lastName: 'Durand', text: 'She never missed Sunday lunch.' },
-  { firstName: 'Jean', lastName: 'Dupont', text: 'He taught me how to fish.' },
-])
-const activeTab = ref('tributes')
-const activeIndex = ref(0)
-function prev() {
-  activeIndex.value = (activeIndex.value - 1 + cards.value.length) % cards.value.length
-}
-function next() {
-  activeIndex.value = (activeIndex.value + 1) % cards.value.length
-}
+/* ------------- Recherche formulaire ------------- */
+const searchFirst = ref('')
+const searchLast  = ref('')
+
+/* ------------- Carousel (tributes) --------------- */
+const apiUrl       = 'http://localhost:3000'
+const CARD_WIDTH   = 220
+const cards        = ref([])          // alimenté après fetch
+const activeIndex  = ref(0)
+const activeTab    = ref('tributes')
+
+function prev () { activeIndex.value = (activeIndex.value - 1 + cards.value.length) % cards.value.length }
+function next () { activeIndex.value = (activeIndex.value + 1) % cards.value.length }
+
 const trackStyle = computed(() => ({
   transform: `translateX(-${activeIndex.value * CARD_WIDTH}px)`
 }))
-const hasGalleryData = computed(() => cards.value.length || anecdotes.value.length)
+
+/* ------------- Anecdotes (placeholder) ----------- */
+const anecdotes = ref([
+  { firstName:'Marie', lastName:'Durand', text:'She never missed Sunday lunch.' },
+  { firstName:'Jean',  lastName:'Dupont', text:'He taught me how to fish.' },
+])
+
+/* ------------- Fetch latest tributes ------------- */
+async function fetchLatestTributes () {
+  try {
+    const res = await fetch(`${apiUrl}/api/deceased?limit=12`)
+    if (!res.ok) throw new Error('Bad response')
+    const data = await res.json()
+
+    cards.value = data.map(d => ({
+      id:        d.id,
+      firstName: d.firstname,
+      lastName:  d.lastname,
+      img:       d.image_url
+                  ? (d.image_url.startsWith('http') ? d.image_url : apiUrl + d.image_url)
+                  : placeholderImg,
+    }))
+  } catch (err) {
+    console.error('Could not load tributes', err)
+  }
+}
+
+onMounted(fetchLatestTributes)
+
+/* ------------- Galerie visible ? ----------------- */
+const hasGalleryData = computed(() =>
+  (activeTab.value === 'tributes' && cards.value.length) ||
+  (activeTab.value === 'anecdotes' && anecdotes.value.length)
+)
 </script>
 
 <style src="../assets/css/home/home-page.css"/>
-<style src="../assets/css/home/Banner.css" />
-<style src="../assets/css/home/SearchBar.css" />
+<style src="../assets/css/home/Banner.css"/>
+<style src="../assets/css/home/SearchBar.css"/>
