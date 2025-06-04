@@ -2,7 +2,6 @@
   <div id="list-page">
     <!-- -------------------- Barre de recherche + filtres -------------------- -->
     <div class="controls">
-      <!-- Recherche par nom -->
       <input
         v-model="searchTerm"
         type="text"
@@ -10,32 +9,21 @@
         class="search-input"
       />
 
-      <!-- Filtre : année de naissance -->
       <select v-model="selectedBirth" class="filter-select">
         <option value="">All birth years</option>
         <option v-for="year in birthYears" :key="year" :value="year">{{ year }}</option>
       </select>
 
-      <!-- Filtre : profession -->
       <select v-model="selectedProfession" class="filter-select">
         <option value="">All occupations</option>
-        <option
-          v-for="profession in professions"
-          :key="profession"
-          :value="profession"
-        >
+        <option v-for="profession in professions" :key="profession" :value="profession">
           {{ profession }}
         </option>
       </select>
 
-      <!-- Filtre : lieu de naissance -->
       <select v-model="selectedBirthplace" class="filter-select">
-        <option value="">Nationaliity</option>
-        <option
-          v-for="place in birthplaces"
-          :key="place"
-          :value="place"
-        >
+        <option value="">Nationality</option>
+        <option v-for="place in birthplaces" :key="place" :value="place">
           {{ place }}
         </option>
       </select>
@@ -63,13 +51,7 @@
 
     <!-- -------------------- Pagination -------------------- -->
     <div v-if="totalPages > 1" class="pagination">
-      <button
-        class="page-btn"
-        :disabled="currentPage === 1"
-        @click="currentPage--"
-      >
-        Previous
-      </button>
+      <button class="page-btn" :disabled="currentPage === 1" @click="currentPage--">Previous</button>
 
       <button
         v-for="page in totalPages"
@@ -81,13 +63,7 @@
         {{ page }}
       </button>
 
-      <button
-        class="page-btn"
-        :disabled="currentPage === totalPages"
-        @click="currentPage++"
-      >
-        Next
-      </button>
+      <button class="page-btn" :disabled="currentPage === totalPages" @click="currentPage++">Next</button>
     </div>
 
     <div v-if="loading" class="loading-msg">Loading…</div>
@@ -97,6 +73,7 @@
 
 <script setup>
 import { ref, computed, watch, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 import Card from '../components/Card.vue'
 import '../assets/css/List.css'
 
@@ -112,6 +89,17 @@ const selectedBirthplace  = ref('')
 
 const itemsPerPage = 20
 const currentPage  = ref(1)
+
+/* ---------- Route & init recherche ---------- */
+const route = useRoute()
+
+function initFromQuery () {
+  const first = route.query.first || ''
+  const last  = route.query.last  || ''
+  if (first || last) searchTerm.value = `${first} ${last}`.trim()
+}
+onMounted(initFromQuery)
+watch(() => route.query, initFromQuery)
 
 /* ---------- API ---------- */
 async function fetchDeceased () {
@@ -130,27 +118,23 @@ async function fetchDeceased () {
 }
 onMounted(fetchDeceased)
 
-/* ---------- Listes uniques pour filtres ---------- */
+/* ---------- Listes uniques ---------- */
 const birthYears = computed(() => {
   const years = deceasedList.value
     .filter(p => p.birth)
-    .map(p => new Date(p.birth).getUTCFullYear())       // nombre
-  return [...new Set(years)].sort((a, b) => b - a) 
+    .map(p => new Date(p.birth).getUTCFullYear())
+  return [...new Set(years)].sort((a, b) => b - a)
 })
 
 const professions = computed(() =>
   [...new Set(
-    deceasedList.value
-      .map(p => p.job)
-      .filter(j => j && j.trim())
+    deceasedList.value.map(p => p.job).filter(j => j && j.trim())
   )].sort()
 )
 
 const birthplaces = computed(() =>
   [...new Set(
-    deceasedList.value
-      .map(p => p.nationality)
-      .filter(n => n && n.trim())
+    deceasedList.value.map(p => p.nationality).filter(n => n && n.trim())
   )].sort()
 )
 
@@ -158,21 +142,16 @@ const birthplaces = computed(() =>
 const filteredList = computed(() => {
   const term = searchTerm.value.toLowerCase()
   return deceasedList.value.filter(person => {
-    const nameMatch = `${person.firstname} ${person.lastname}`.toLowerCase().includes(term)
-
+    const nameMatch  = `${person.firstname} ${person.lastname}`.toLowerCase().includes(term)
     const birthYear  = person.birth ? new Date(person.birth).getUTCFullYear() : null
     const birthMatch = selectedBirth.value ? birthYear === selectedBirth.value : true
-
-    const profMatch = selectedProfession.value ? person.job === selectedProfession.value : true
+    const profMatch  = selectedProfession.value ? person.job === selectedProfession.value : true
     const placeMatch = selectedBirthplace.value ? person.nationality === selectedBirthplace.value : true
-
     return nameMatch && birthMatch && profMatch && placeMatch
   })
 })
 
-const totalPages = computed(() =>
-  Math.ceil(filteredList.value.length / itemsPerPage) || 1
-)
+const totalPages = computed(() => Math.ceil(filteredList.value.length / itemsPerPage) || 1)
 
 const paginatedList = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage

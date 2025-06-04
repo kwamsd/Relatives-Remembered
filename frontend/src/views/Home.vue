@@ -13,34 +13,41 @@
 
   <!-- 3. Honor & Search -->
   <section class="honor-section">
+    <!-- Bouton de création -->
     <div class="honor-box">
       <span>HONOUR THE MEMORY OF A LOVED ONE</span>
       <button class="honor-btn" @click="handleHonor">+</button>
     </div>
 
-    <div class="search-box">
+    <!-- Barre de recherche -->
+    <form class="search-box" @submit.prevent="handleSearch">
       <p>REMEMBER SOMEONE SPECIAL</p>
-      <input v-model="searchFirst" type="text" placeholder="First Name" />
-      <input v-model="searchLast"  type="text" placeholder="Last Name" />
-      <button @click="handleSearch">🔍</button>
-    </div>
+      <input v-model="searchFirst" placeholder="First Name" />
+      <input v-model="searchLast"  placeholder="Last Name" />
+      <button type="submit">🔍</button>
+    </form>
   </section>
 
   <!-- 4. Gallery / Anecdotes -->
   <section v-if="hasGalleryData" class="gallery-wrapper">
-    <!-- Titles -->
-    <h3 class="gallery-title">{{ activeTab === 'tributes' ? 'Latest Tributes' : 'Anecdotes' }}</h3>
+    <!-- Titre dynamique -->
+    <h3 class="gallery-title">
+      {{ activeTab === 'tributes' ? 'Latest Tributes' : 'Anecdotes' }}
+    </h3>
 
-    <!-- Tabs -->
+    <!-- Onglets -->
     <div class="gallery-tabs">
-      <button :class="{ active: activeTab === 'tributes' }" @click="activeTab = 'tributes'">Latest&nbsp;Tributes</button>
-      <button :class="{ active: activeTab === 'anecdotes' }" @click="activeTab = 'anecdotes'">Anecdotes</button>
+      <button :class="{ active: activeTab === 'tributes' }"
+              @click="activeTab = 'tributes'">Latest&nbsp;Tributes</button>
+      <button :class="{ active: activeTab === 'anecdotes' }"
+              @click="activeTab = 'anecdotes'">Anecdotes</button>
     </div>
 
-    <!-- Body -->
-    <!-- ---------- TRIBUTES CAROUSEL ---------- -->
+    <!-- Carrousel Tributes -->
     <div v-if="activeTab === 'tributes'" class="gallery-body">
-      <button class="nav-btn-home" @click="prev"><i class="fa-solid fa-arrow-left"></i></button>
+      <button class="nav-btn-home" @click="prev">
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
 
       <div class="gallery-container">
         <div class="gallery-track" :style="trackStyle">
@@ -57,10 +64,12 @@
         </div>
       </div>
 
-      <button class="nav-btn-home" @click="next"><i class="fa-solid fa-arrow-right"></i></button>
+      <button class="nav-btn-home" @click="next">
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
     </div>
 
-    <!-- ---------- ANECDOTES LIST ---------- -->
+    <!-- Anecdotes (placeholder) -->
     <div v-else class="anecdotes-container">
       <div v-for="(anec, i) in anecdotes" :key="i" class="anecdote-card">
         <p class="anecdote-text">"{{ anec.text }}"</p>
@@ -132,29 +141,33 @@ import { useRouter } from 'vue-router'
 import { authService } from '../services/authService'
 import placeholderImg from '../assets/images/photo-pp.jpg'
 
-/* ------------- Auth / CTA ------------- */
+/* ---------- Auth / CTA ---------- */
 const { state } = authService
 const isLogged        = computed(() => !!state.user)
 const router          = useRouter()
 const showLoginPrompt = ref(false)
 
-function handleHonor()      { isLogged.value ? router.push('/survey') : showLoginPrompt.value = true }
-function handleStartNow()   { handleHonor() }   // même logique
-function handleSearch () {
-  if (!searchFirst.value && !searchLast.value) return
-  router.push({ path: '/list', query:{ first:searchFirst.value, last:searchLast.value }})
-}
+function handleHonor ()      { isLogged.value ? router.push('/survey') : (showLoginPrompt.value = true) }
+function handleStartNow ()   { handleHonor() }
 
-/* ------------- Recherche formulaire ------------- */
+/* ---------- Recherche ---------- */
 const searchFirst = ref('')
 const searchLast  = ref('')
 
-/* ------------- Carousel (tributes) --------------- */
-const apiUrl       = 'http://localhost:3000'
-const CARD_WIDTH   = 220
-const cards        = ref([])          // alimenté après fetch
-const activeIndex  = ref(0)
-const activeTab    = ref('tributes')
+function handleSearch () {
+  const q = {}
+  if (searchFirst.value.trim()) q.first = searchFirst.value.trim()
+  if (searchLast.value.trim())  q.last  = searchLast.value.trim()
+  if (!Object.keys(q).length) return        // rien à chercher
+  router.push({ path: '/list', query: q })
+}
+
+/* ---------- Carrousel ---------- */
+const apiUrl      = 'http://localhost:3000'
+const CARD_WIDTH  = 220
+const cards       = ref([])
+const activeIndex = ref(0)
+const activeTab   = ref('tributes')
 
 function prev () { activeIndex.value = (activeIndex.value - 1 + cards.value.length) % cards.value.length }
 function next () { activeIndex.value = (activeIndex.value + 1) % cards.value.length }
@@ -163,16 +176,16 @@ const trackStyle = computed(() => ({
   transform: `translateX(-${activeIndex.value * CARD_WIDTH}px)`
 }))
 
-/* ------------- Anecdotes (placeholder) ----------- */
+/* ---------- Anecdotes (mock) ---------- */
 const anecdotes = ref([
   { firstName:'Marie', lastName:'Durand', text:'She never missed Sunday lunch.' },
   { firstName:'Jean',  lastName:'Dupont', text:'He taught me how to fish.' },
 ])
 
-/* ------------- Fetch latest tributes ------------- */
+/* ---------- Fetch tributes ---------- */
 async function fetchLatestTributes () {
   try {
-    const res = await fetch(`${apiUrl}/api/deceased?limit=12`)
+    const res  = await fetch(`${apiUrl}/api/deceased?limit=12`)
     if (!res.ok) throw new Error('Bad response')
     const data = await res.json()
 
@@ -180,20 +193,19 @@ async function fetchLatestTributes () {
       id:        d.id,
       firstName: d.firstname,
       lastName:  d.lastname,
-      img:       d.image_url
-                  ? (d.image_url.startsWith('http') ? d.image_url : apiUrl + d.image_url)
-                  : placeholderImg,
+      img: d.image_url
+           ? (d.image_url.startsWith('http') ? d.image_url : apiUrl + d.image_url)
+           : placeholderImg,
     }))
   } catch (err) {
     console.error('Could not load tributes', err)
   }
 }
-
 onMounted(fetchLatestTributes)
 
-/* ------------- Galerie visible ? ----------------- */
+/* ---------- Affichage de la galerie ? ---------- */
 const hasGalleryData = computed(() =>
-  (activeTab.value === 'tributes' && cards.value.length) ||
+  (activeTab.value === 'tributes'  && cards.value.length) ||
   (activeTab.value === 'anecdotes' && anecdotes.value.length)
 )
 </script>
