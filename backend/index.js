@@ -20,11 +20,11 @@ app.use(cookieParser());            // ← ajoute cookie-parser
 
 // Routes
 const authRoutes = require('./routes/auth.js');
-// const deceasedRoutes = require('./routes/deceased');
-// const anecdoteRoutes = require('./routes/anecdotes');
+const deceasedRoutes = require('./routes/deceased');
+const anecdoteRoutes = require('./routes/anecdotes');
 
-// app.use('/api/deceased', deceasedRoutes);
-// app.use('/api', anecdoteRoutes);
+app.use('/api/deceased', deceasedRoutes);
+app.use('/api', anecdoteRoutes);
 app.use('/auth', authRoutes);
 
 // Lancement du serveur
