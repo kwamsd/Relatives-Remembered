@@ -50,7 +50,9 @@
   gap: 0.25rem;
   background: #f0f4f4;      /* ← plus clair que #798F8F */
 }
-
+.card-info p{
+  margin: 3px;
+}
 /* Nom */
 .card-name {
   margin: 0;

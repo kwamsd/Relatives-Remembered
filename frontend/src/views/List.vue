@@ -2,10 +2,15 @@
   <div id="list-page">
     <!-- Barre de recherche & filtres -->
     <div class="controls">
-      <!-- Recherche par nom complet -->
-      <input type="text" v-model="searchTerm" placeholder="🔍 Rechercher un nom..." class="search-input" />
+      <!-- Recherche par nom -->
+      <input
+        type="text"
+        v-model="searchTerm"
+        placeholder="🔍 Rechercher un nom..."
+        class="search-input"
+      />
 
-      <!-- Filtre par année de naissance -->
+      <!-- Filtre : année de naissance -->
       <select v-model="selectedBirth" class="filter-select">
         <option value="">Toutes années de naissance</option>
         <option v-for="year in birthYears" :key="year" :value="year">
@@ -13,15 +18,19 @@
         </option>
       </select>
 
-      <!-- Filtre par profession -->
+      <!-- Filtre : profession -->
       <select v-model="selectedProfession" class="filter-select">
         <option value="">Toutes professions</option>
-        <option v-for="profession in professions" :key="profession" :value="profession">
+        <option
+          v-for="profession in professions"
+          :key="profession"
+          :value="profession"
+        >
           {{ profession }}
         </option>
       </select>
 
-      <!-- Filtre par lieu de naissance -->
+      <!-- Filtre : lieu de naissance -->
       <select v-model="selectedBirthplace" class="filter-select">
         <option value="">Tous lieux de naissance</option>
         <option v-for="place in birthplaces" :key="place" :value="place">
@@ -30,44 +39,55 @@
       </select>
     </div>
 
-    <!-- Conteneur en grille -->
+    <!-- Grille de cartes -->
     <div class="list-container">
-    <router-link
-      v-for="person in paginatedList"
-      :key="person.id"
-      :to="`/dead-people/${person.id}`"
-      class="card-link"
-    >
-      <Card
-        :firstname="person.firstname"
-        :lastname="person.lastname"
-        :birth="person.birth"
-        :death="person.death"
-        :profession="person.job"           
-        :birthplace="person.nationality"   
-        :photo="person.image_url"          
-      />
-    </router-link>
+      <router-link
+        v-for="person in paginatedList"
+        :key="person.id"
+        :to="`/template/${person.id}`"
+        class="card-link"
+      >
+        <Card
+          :firstname="person.firstname"
+          :lastname="person.lastname"
+          :birth="person.birth"
+          :death="person.death"
+          :profession="person.job"          
+          :birthplace="person.nationality"  
+          :photo="person.image_url"
+        />
+      </router-link>
     </div>
-
 
     <!-- Pagination -->
     <div v-if="totalPages > 1" class="pagination">
-      <button :disabled="currentPage === 1" @click="currentPage--" class="page-btn">
+      <button
+        :disabled="currentPage === 1"
+        @click="currentPage--"
+        class="page-btn"
+      >
         Précédent
       </button>
 
-      <!-- Boutons numérotés de page -->
-      <button v-for="page in totalPages" :key="page" @click="currentPage = page"
-        :class="['page-btn', { active: page === currentPage }]">
+      <button
+        v-for="page in totalPages"
+        :key="page"
+        @click="currentPage = page"
+        :class="['page-btn', { active: page === currentPage }]"
+      >
         {{ page }}
       </button>
 
-      <button :disabled="currentPage === totalPages" @click="currentPage++" class="page-btn">
+      <button
+        :disabled="currentPage === totalPages"
+        @click="currentPage++"
+        class="page-btn"
+      >
         Suivant
       </button>
     </div>
-    <div v-if="loading" class="loading-msg">Chargement...</div>
+
+    <div v-if="loading" class="loading-msg">Chargement…</div>
     <div v-if="error" class="error-msg">{{ error }}</div>
   </div>
 </template>
@@ -77,9 +97,7 @@ import { ref, computed, watch, onMounted } from 'vue'
 import Card from '../components/Card.vue'
 import '../assets/css/List.css'
 
-/* ---------------------------- */
-/*  ÉTATS                       */
-/* ---------------------------- */
+/* -------------------- ÉTATS -------------------- */
 const deceasedList        = ref([])
 const loading             = ref(false)
 const error               = ref('')
@@ -92,13 +110,10 @@ const selectedBirthplace  = ref('')
 const itemsPerPage = 20
 const currentPage  = ref(1)
 
-/* ---------------------------- */
-/*  FETCH API                   */
-/* ---------------------------- */
+/* ------------------- FETCH API ------------------ */
 async function fetchDeceased () {
   loading.value = true
   error.value   = ''
-
   try {
     const res = await fetch('http://localhost:3000/api/deceased')
     if (!res.ok) throw new Error('Bad response')
@@ -112,48 +127,60 @@ async function fetchDeceased () {
 }
 onMounted(fetchDeceased)
 
-/* ---------------------------- */
-/*  LISTES UNIQUES POUR FILTRES */
-/* ---------------------------- */
-const birthYears = computed(() =>
-  [...new Set(deceasedList.value.map(p => p.birth))].sort((a, b) => a - b)
-)
+/* ------------- LISTES UNIQUES FILTRES ----------- */
+// Années de naissance (extraites du champ `birth`)
+const birthYears = computed(() => {
+  const years = deceasedList.value
+    .filter(p => p.birth)                      // ignore les null
+    .map(p => new Date(p.birth).getUTCFullYear())
+  return [...new Set(years)].sort((a, b) => b - a) // décroissant
+})
 
+// Professions (colonne `job`)
 const professions = computed(() =>
   [...new Set(
     deceasedList.value
-      .map(p => p.profession)
-      .filter(p => p && p.trim())
+      .map(p => p.job)
+      .filter(j => j && j.trim())
   )].sort()
 )
 
+// Lieux de naissance (colonne `nationality`)
 const birthplaces = computed(() =>
   [...new Set(
     deceasedList.value
-      .map(p => p.birthplace)
-      .filter(p => p && p.trim())
+      .map(p => p.nationality)
+      .filter(n => n && n.trim())
   )].sort()
 )
 
-/* ---------------------------- */
-/*  FILTRAGE + PAGINATION       */
-/* ---------------------------- */
-const filteredList = computed(() =>
-  deceasedList.value.filter(person => {
-    const nameMatch  = `${person.firstname} ${person.lastname}`.toLowerCase()
-                       .includes(searchTerm.value.toLowerCase())
+/* ------------ FILTRAGE + PAGINATION ------------- */
+const filteredList = computed(() => {
+  const term = searchTerm.value.toLowerCase()
+  return deceasedList.value.filter(person => {
+    const nameMatch = `${person.firstname} ${person.lastname}`
+                        .toLowerCase()
+                        .includes(term)
+
+    // compare l’année extraite à partir de birth
+    const birthYear = person.birth
+      ? new Date(person.birth).getUTCFullYear().toString()
+      : null
     const birthMatch = selectedBirth.value
-                         ? person.birth === selectedBirth.value
-                         : true
-    const profMatch  = selectedProfession.value
-                         ? person.profession === selectedProfession.value
-                         : true
+      ? birthYear === selectedBirth.value
+      : true
+
+    const profMatch = selectedProfession.value
+      ? person.job === selectedProfession.value
+      : true
+
     const placeMatch = selectedBirthplace.value
-                         ? person.birthplace === selectedBirthplace.value
-                         : true
+      ? person.nationality === selectedBirthplace.value
+      : true
+
     return nameMatch && birthMatch && profMatch && placeMatch
   })
-)
+})
 
 const totalPages = computed(() =>
   Math.ceil(filteredList.value.length / itemsPerPage) || 1

@@ -1,43 +1,41 @@
-const express = require('express');
-const router = express.Router();
-const { protect } = require('../middlewares/authMiddleware');
-const { getDeceasedByUser } = require('../controllers/deceasedController');
-const deceasedController = require('../controllers/deceasedController');
-const authMiddleware = require('../middlewares/authMiddleware');
-const multer = require('multer');
-const path = require('path');
+const express  = require('express');
+const router   = express.Router();
+const multer   = require('multer');
+const path     = require('path');
 
-// Configure Multer pour stocker les fichiers dans /uploads
+const { protect }         = require('../middlewares/authMiddleware');
+const deceasedController  = require('../controllers/deceasedController');
+const backgroundController = require('../controllers/backgroundController');
+
+/* ----- Multer ----- */
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/'); // Crée ce dossier à la racine du projet si besoin
-  },
-  filename: function (req, file, cb) {
-    const uniqueName = Date.now() + '-' + Math.round(Math.random() * 1E9)
-    cb(null, uniqueName + path.extname(file.originalname));
-  }
+  destination: (_, __, cb) => cb(null, 'uploads/'),
+  filename:    (_, file, cb) =>
+    cb(null, `${Date.now()}-${Math.round(Math.random() * 1e9)}${path.extname(file.originalname)}`),
 });
-const upload = multer({ storage: storage });
+const upload = multer({ storage });
 
-// POST /api/deceased (avec fichier)
+/* ----- Routes ----- */
+
+// Créer un profil
 router.post('/', protect, upload.single('photo'), deceasedController.createProfile);
 
-router.get('/', deceasedController.getAllProfiles);
+// Liste + profils propres
+router.get('/',            deceasedController.getAllProfiles);
+router.get('/mine', protect, deceasedController.getDeceasedByUser);
+
+// Personnalisation background
+router.get('/:id/background', backgroundController.getBackground);
+router.put('/:id/background',
+  protect,
+  upload.single('background'),
+  backgroundController.updateBackground);
+
+// Profil complet + édition
 router.get('/:id', deceasedController.getProfileById);
-
-
-router.get('/mine', protect, getDeceasedByUser)
-
-router.put('/:id', authMiddleware, deceasedController.updateProfile)
-
-// Récupérer background
-router.get('/:id/background', backgroundController.getBackground)
-
-// Mettre à jour background (upload image possible)
-router.put('/:id/background', authMiddleware, upload.single('background'), backgroundController.updateBackground)
-
-// Autres routes pour deceased...
-router.get('/:id', deceasedController.getProfileById)
-router.put('/:id', authMiddleware, upload.single('image'), deceasedController.updateProfile)
+router.put('/:id',
+  protect,
+  upload.single('image'),
+  deceasedController.updateProfile);
 
 module.exports = router;

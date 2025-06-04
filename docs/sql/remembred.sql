@@ -43,8 +43,8 @@ CREATE TABLE backgrounds (
     id_template INTEGER REFERENCES templates(id) ON DELETE CASCADE,
     id_user INTEGER REFERENCES users(id) ON DELETE SET NULL,
     background_url TEXT,
-    color_main VARCHAR(7) NOT NULL,
-    color_overlay VARCHAR(7) NOT NULL
+    color_main VARCHAR(7) NOT NULL, --100%
+    color_overlay VARCHAR(7) NOT NULL --38% pour les borders
 );
 
 -- Table: anecdotes (visiteurs + approval)

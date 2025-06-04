@@ -169,7 +169,7 @@ async function submit() {
       throw new Error(data.error || 'Erreur lors de la sauvegarde du background')
     }
     success.value = 'Profil et personnalisation mis à jour avec succès !'
-    setTimeout(() => router.push(`/dead-people/${route.params.id}`), 1500)
+    setTimeout(() => router.push(`/template/${route.params.id}`), 1500)
   } catch (e) {
     error.value = e.message
   } finally {
