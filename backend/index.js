@@ -1,37 +1,35 @@
-// backend/index.js
 const express = require('express');
 const cors = require('cors');
-const cookieParser = require('cookie-parser');        // ← import
+const cookieParser = require('cookie-parser');
 const fs = require('fs');
+require('dotenv').config();
+
 if (!fs.existsSync('uploads')) {
   fs.mkdirSync('uploads', { recursive: true });
 }
+
 const app = express();
-require('dotenv').config();
 
 const PORT = process.env.PORT || 3000;
 
-
-
-// Middlewares
+// Middleware
 app.use(cors({
-  origin: 'https://relatives-remembered.vercel.app',  // ton front Vite
-  credentials: true                 // autorise l'envoi des cookies
+  origin: 'https://relatives-remembered.vercel.app',  // Frontend Vercel
+  credentials: true
 }));
 app.use(express.json());
+app.use(cookieParser());
 app.use('/uploads', express.static('uploads'));
-app.use(cookieParser());            // ← ajoute cookie-parser
 
 // Routes
-const authRoutes = require('./routes/auth.js');
+const authRoutes = require('./routes/auth');
 const deceasedRoutes = require('./routes/deceased');
 const anecdoteRoutes = require('./routes/anecdotes');
 
+app.use('/auth', authRoutes);
 app.use('/api/deceased', deceasedRoutes);
 app.use('/api', anecdoteRoutes);
-app.use('/auth', authRoutes);
 
-// Lancement du serveur
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
