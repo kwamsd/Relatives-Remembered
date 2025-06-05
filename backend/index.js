@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3000;
 
 // Middlewares
 app.use(cors({
-  origin: 'http://localhost:5173',  // ton front Vite
+  origin: 'https://relatives-remembered.vercel.app',  // ton front Vite
   credentials: true                 // autorise l'envoi des cookies
 }));
 app.use(express.json());
