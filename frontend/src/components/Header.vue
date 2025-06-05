@@ -45,7 +45,7 @@
 <script setup>
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-import logo from '../assets/images/logo.png'
+import logo from '../assets/images/LOGO.png'
 import '../assets/css/components/Header.css'
 import { authService } from '../services/authService'
 
