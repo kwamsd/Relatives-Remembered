@@ -38,7 +38,7 @@
 </template>
 
 <script setup>
-import '../assets/css/account/login.css'
+import '../assets/css/account/Login.css'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { authService as $auth } from '../services/authService.js'
