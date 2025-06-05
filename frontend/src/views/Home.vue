@@ -163,7 +163,7 @@ function handleSearch () {
 }
 
 /* ---------- Carrousel ---------- */
-const apiUrl      = 'http://localhost:3000'
+const apiUrl      = 'https://relatives-remembered.onrender.com'
 const CARD_WIDTH  = 220
 const cards       = ref([])
 const activeIndex = ref(0)

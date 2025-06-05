@@ -78,7 +78,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { authService as $auth } from '../services/authService.js'
 import '../assets/css/dead.css'
 
-const apiUrl = 'http://localhost:3000'
+const apiUrl = 'https://relatives-remembered.onrender.com'
 
 const route = useRoute()
 const router = useRouter()

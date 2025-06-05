@@ -60,7 +60,7 @@ const deathYear = computed(() =>
 )
 
 /* ---------- Photo : chemin absolu ---------- */
-const apiUrl = 'http://localhost:3000'   
+const apiUrl = 'https://relatives-remembered.onrender.com'   
 const photoSrc = computed(() =>
   props.photo
     ? props.photo.startsWith('http')

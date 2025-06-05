@@ -85,7 +85,7 @@ import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import '../assets/css/edit.css'
 
-const apiUrl = 'http://localhost:3000'
+const apiUrl = 'https://relatives-remembered.onrender.com'
 
 const route = useRoute()
 const router = useRouter()

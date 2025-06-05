@@ -106,7 +106,7 @@ async function fetchDeceased () {
   loading.value = true
   error.value   = ''
   try {
-    const res = await fetch('http://localhost:3000/api/deceased')
+    const res = await fetch('https://relatives-remembered.onrender.com/api/deceased')
     if (!res.ok) throw new Error('Bad response')
     deceasedList.value = await res.json()
   } catch (err) {
