@@ -102,8 +102,8 @@ exports.loginUser = async (req, res) => {
     // 5) Stocker le token dans un cookie HTTP-Only
     res.cookie('token', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      secure: true,
+      sameSite: 'None',
       maxAge: 24 * 60 * 60 * 1000 // expire dans 24h
     });
 
@@ -119,8 +119,8 @@ exports.logoutUser = (req, res) => {
   res
     .clearCookie('token', {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax'
+      secure: true,       
+      sameSite: 'None'    
     })
     .json({ message: 'Déconnecté' });
 };
