@@ -84,6 +84,8 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { authService as $auth } from '../services/authService.js'
 import '../assets/css/form.css'
+import { apiUrl } from '@/config/api'
+
 
 /* ---------- champs existants ---------- */
 const firstname = ref(''); const lastname = ref('');
@@ -123,7 +125,7 @@ async function handleSubmit() {
     fd.append('gender', gender.value); fd.append('description', description.value)
     if (file.value) fd.append('photo', file.value)
 
-    const res = await fetch('https://relatives-remembered.onrender.com', {
+    const res = await fetch(`${apiUrl}`, {
       method: 'POST', credentials: 'include', body: fd
     })
     if (!res.ok) {
@@ -137,7 +139,7 @@ async function handleSubmit() {
     bgData.append('color_main', color_main.value)
     bgData.append('color_overlay', color_overlay.value)
 
-    await fetch(`https://relatives-remembered.onrender.com/api/deceased/${created.id}/background`, {
+    await fetch(`${apiUrl}/api/deceased/${created.id}/background`, {
       method: 'PUT',
       credentials: 'include',
       body: bgData         // aucune image ici

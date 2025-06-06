@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
+import { apiUrl } from '@/config/api'
 
 const defunts = ref([])
 const loading = ref(true)
@@ -7,7 +8,7 @@ const error = ref(null)
 
 onMounted(async () => {
   try {
-    const res = await fetch('https://relatives-remembered.onrender.com/api/deceased/mine', {
+    const res = await fetch(`${apiUrl}/api/deceased/mine`, {
       credentials: 'include'
     })
     if (!res.ok) throw new Error('Data retrieval error')

@@ -76,6 +76,7 @@ import { ref, computed, watch, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import Card from '../components/Card.vue'
 import '../assets/css/List.css'
+import { apiUrl } from '@/config/api'
 
 /* ---------- États ---------- */
 const deceasedList        = ref([])
@@ -106,7 +107,7 @@ async function fetchDeceased () {
   loading.value = true
   error.value   = ''
   try {
-    const res = await fetch('https://relatives-remembered.onrender.com/api/deceased')
+    const res = await fetch(`${apiUrl}/api/deceased`)
     if (!res.ok) throw new Error('Bad response')
     deceasedList.value = await res.json()
   } catch (err) {

@@ -39,6 +39,7 @@
 
 <script setup>
 import { computed } from 'vue'
+import { apiUrl } from '@/config/api'
 
 /* ---------- props ---------- */
 const props = defineProps({
@@ -59,8 +60,7 @@ const deathYear = computed(() =>
   props.death ? new Date(props.death).getUTCFullYear() : null
 )
 
-/* ---------- Photo : chemin absolu ---------- */
-const apiUrl = 'https://relatives-remembered.onrender.com'   
+/* ---------- Photo : chemin absolu ---------- */ 
 const photoSrc = computed(() =>
   props.photo
     ? props.photo.startsWith('http')

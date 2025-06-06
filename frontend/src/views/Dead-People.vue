@@ -77,8 +77,9 @@ import { ref, onMounted, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { authService as $auth } from '../services/authService.js'
 import '../assets/css/dead.css'
+import { apiUrl } from '@/config/api'
 
-const apiUrl = 'https://relatives-remembered.onrender.com'
+
 
 const route = useRoute()
 const router = useRouter()
