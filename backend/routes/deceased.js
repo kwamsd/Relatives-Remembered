@@ -1,19 +1,12 @@
-const express  = require('express');
-const router   = express.Router();
-const multer   = require('multer');
-const path     = require('path');
+const multer = require('multer');
+const storage = multer.memoryStorage();
+const upload  = multer({ storage });
 
-const { protect }         = require('../middlewares/authMiddleware');
-const deceasedController  = require('../controllers/deceasedController');
+const express = require('express');
+const router  = express.Router();
+const { protect } = require('../middlewares/authMiddleware');
+const deceasedController = require('../controllers/deceasedController');
 const backgroundController = require('../controllers/backgroundController');
-
-/* ----- Multer ----- */
-const storage = multer.diskStorage({
-  destination: (_, __, cb) => cb(null, 'uploads/'),
-  filename:    (_, file, cb) =>
-    cb(null, `${Date.now()}-${Math.round(Math.random() * 1e9)}${path.extname(file.originalname)}`),
-});
-const upload = multer({ storage });
 
 /* ----- Routes ----- */
 

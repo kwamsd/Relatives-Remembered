@@ -53,7 +53,7 @@ async function logout() {
 
 async function register(user) {
   state.error = null
-  const res = await fetch(`${apiUrl}/register`, {
+  const res = await fetch(`${apiUrl}/auth/register`, {
     method: 'POST',
     credentials: 'include',
     headers: { 'Content-Type': 'application/json' },
