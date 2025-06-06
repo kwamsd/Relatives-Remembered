@@ -140,6 +140,7 @@ import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { authService } from '../services/authService'
 import placeholderImg from '../assets/images/photo-pp.jpg'
+import { apiUrl } from '@/config/api'
 
 /* ---------- Auth / CTA ---------- */
 const { state } = authService
@@ -163,7 +164,6 @@ function handleSearch () {
 }
 
 /* ---------- Carrousel ---------- */
-const apiUrl      = 'http://localhost:3000'
 const CARD_WIDTH  = 220
 const cards       = ref([])
 const activeIndex = ref(0)

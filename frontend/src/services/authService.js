@@ -1,5 +1,5 @@
-// frontend/src/services/authService.js
 import { reactive } from 'vue'
+import { apiUrl } from '@/config/api'
 
 const state = reactive({
   user: null,
@@ -7,12 +7,11 @@ const state = reactive({
   loading: false
 })
 
-const API = 'http://localhost:3000/auth'
 
 async function fetchMe () {
   state.loading = true
   try {
-    const res = await fetch(`${API}/me`, { credentials: 'include' })
+    const res = await fetch(`${apiUrl}/auth/me`, { credentials: 'include' })
     console.log('[fetchMe] status', res.status)           // <- ajoutez
     if (!res.ok) {
       state.user = null
@@ -30,7 +29,7 @@ async function fetchMe () {
 
 async function login(email, password) {
   state.error = null
-  const res = await fetch(`${API}/login`, {
+  const res = await fetch(`${apiUrl}/auth/login`, {
     method: 'POST',
     credentials: 'include',
     headers: { 'Content-Type': 'application/json' },
@@ -45,7 +44,7 @@ async function login(email, password) {
 }
 
 async function logout() {
-  await fetch(`${API}/logout`, {
+  await fetch(`${apiUrl}/auth/logout`, {
     method: 'POST',
     credentials: 'include'
   })
@@ -54,7 +53,7 @@ async function logout() {
 
 async function register(user) {
   state.error = null
-  const res = await fetch(`${API}/register`, {
+  const res = await fetch(`${apiUrl}/auth/register`, {
     method: 'POST',
     credentials: 'include',
     headers: { 'Content-Type': 'application/json' },

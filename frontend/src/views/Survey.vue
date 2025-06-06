@@ -123,7 +123,7 @@ async function handleSubmit() {
     fd.append('gender', gender.value); fd.append('description', description.value)
     if (file.value) fd.append('photo', file.value)
 
-    const res = await fetch('http://localhost:3000/api/deceased', {
+    const res = await fetch(`${apiUrl}`, {
       method: 'POST', credentials: 'include', body: fd
     })
     if (!res.ok) {
@@ -137,7 +137,7 @@ async function handleSubmit() {
     bgData.append('color_main', color_main.value)
     bgData.append('color_overlay', color_overlay.value)
 
-    await fetch(`http://localhost:3000/api/deceased/${created.id}/background`, {
+    await fetch(`${apiUrl}/api/deceased/${created.id}/background`, {
       method: 'PUT',
       credentials: 'include',
       body: bgData         // aucune image ici

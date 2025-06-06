@@ -39,6 +39,8 @@
 
 <script setup>
 import { computed } from 'vue'
+import { apiUrl } from '@/config/api'
+
 
 /* ---------- props ---------- */
 const props = defineProps({
@@ -59,8 +61,7 @@ const deathYear = computed(() =>
   props.death ? new Date(props.death).getUTCFullYear() : null
 )
 
-/* ---------- Photo : chemin absolu ---------- */
-const apiUrl = 'http://localhost:3000'   
+/* ---------- Photo : chemin absolu ---------- */ 
 const photoSrc = computed(() =>
   props.photo
     ? props.photo.startsWith('http')

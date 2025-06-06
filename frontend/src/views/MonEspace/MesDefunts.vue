@@ -7,7 +7,7 @@ const error = ref(null)
 
 onMounted(async () => {
   try {
-    const res = await fetch('http://localhost:3000/api/deceased/mine', {
+    const res = await fetch(`${apiUrl}/api/deceased/mine`, {
       credentials: 'include'
     })
     if (!res.ok) throw new Error('Data retrieval error')
